@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tesis de Maestría | Agile PMO & IA — MIRA Cali</title>
+  <meta name="description" content="Presentación interactiva de la tesis de Maestría en Gerencia de Proyectos: Diseño de una Agile PMO potenciada con IA para iniciativas comunitarias en Cali.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0B132B;
+      --bg-card: rgba(28, 37, 65, 0.85);
+      --bg-card-hover: rgba(45, 59, 99, 0.95);
+      --accent: #48CAE4;
+      --accent-glow: rgba(72, 202, 228, 0.25);
+      --text-main: #FFFFFF;
+      --text-muted: #CBD5E1;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --border-accent: rgba(72, 202, 228, 0.4);
+      --header-bg: rgba(11, 19, 43, 0.95);
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family); }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+    header { position: sticky; top: 0; z-index: 1000; background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo-area { font-weight: 700; font-size: 1.05rem; color: var(--text-main); }
+    .logo-area span { color: var(--accent); }
+    nav ul { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.3s; }
+    nav a:hover, nav a.active { color: var(--accent); }
+    .nav-btn { padding: 0.4rem 0.9rem; border: 1px solid var(--border-accent); border-radius: 6px; background: var(--accent-glow); color: var(--accent) !important; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 4.5rem 2rem; }
+    .text-center { text-align: center; }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 2rem 4rem 2rem; background: radial-gradient(circle at center, rgba(28, 37, 65, 0.7) 0%, rgba(11, 19, 43, 1) 75%); border-bottom: 1px solid var(--border-color); }
+    .badge { display: inline-block; padding: 0.4rem 1rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-accent); border-radius: 50px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 1.5rem; text-transform: uppercase; }
+    .hero-title { font-size: 2.2rem; font-weight: 800; max-width: 950px; line-height: 1.3; margin-bottom: 1.5rem; color: var(--text-main); }
+    .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2.5rem; }
+    .hero-meta { display: flex; gap: 2rem; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center; }
+    .hero-meta strong { color: var(--text-main); }
+    .cta-group { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 0.85rem 1.8rem; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: all 0.3s; cursor: pointer; display: inline-flex; align-items: center; }
+    .btn-primary { background-color: var(--accent); color: var(--bg-main); border: 1px solid var(--accent); box-shadow: 0 4px 15px var(--accent-glow); }
+    .btn-primary:hover { background-color: #64D2E8; transform: translateY(-2px); }
+    .btn-secondary { background-color: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background-color: var(--accent-glow); transform: translateY(-2px); }
+    .section-header { margin-bottom: 3rem; }
+    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-main); }
+    .section-subtitle { font-size: 1.05rem; color: var(--text-muted); max-width: 750px; }
+    .subsection-title { font-size: 1.3rem; color: var(--accent); font-weight: 600; }
+    .grid { display: grid; gap: 1.5rem; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.8rem; transition: all 0.3s; }
+    .card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .card-highlight { border-left: 4px solid var(--accent); }
+    .card-doc { max-width: 650px; margin: 0 auto; padding: 2.5rem; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .card h3, .card h4 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-main); }
+    .card p { color: var(--text-muted); font-size: 0.95rem; }
+    .text-large { font-size: 1.05rem; color: var(--text-main); }
+    .question-box { background: linear-gradient(135deg, rgba(28, 37, 65, 0.9) 0%, rgba(11, 19, 43, 0.9) 100%); border: 1px solid var(--border-accent); border-left: 6px solid var(--accent); padding: 2.5rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 10px 30px var(--accent-glow); }
+    .question-box h3 { font-size: 1.3rem; line-height: 1.5; font-style: italic; color: #E2E8F0; margin-top: 0.8rem; }
+    .pill { display: inline-block; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: rgba(255, 255, 255, 0.1); color: var(--text-main); margin-bottom: 0.5rem; }
+    .pill-accent { background: var(--accent); color: var(--bg-main); }
+    .pill-pending { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .clean-list { list-style: none; margin-top: 1rem; }
+    .clean-list li { margin-bottom: 0.8rem; color: var(--text-muted); font-size: 0.95rem; }
+    .phase-list { padding-left: 1.2rem; margin-top: 1rem; color: var(--text-muted); }
+    .phase-list li { margin-bottom: 0.6rem; font-size: 0.92rem; }
+    .interactive-model { display: flex; flex-direction: column; gap: 1rem; max-width: 850px; margin: 2rem auto; }
+    .model-step { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.2rem 1.8rem; cursor: pointer; transition: all 0.3s; }
+    .model-step:hover, .model-step.active { border-color: var(--accent); background: var(--bg-card-hover); box-shadow: 0 4px 15px var(--accent-glow); }
+    .step-header { display: flex; justify-content: space-between; align-items: center; }
+    .step-header h4 { font-size: 1.05rem; color: var(--text-main); }
+    .step-header .arrow { color: var(--accent); font-size: 0.9rem; }
+    .model-details { background: rgba(11, 19, 43, 0.95); border: 1px dashed var(--border-accent); padding: 1.2rem; border-radius: 8px; margin-top: 0.8rem; font-size: 0.92rem; color: var(--text-muted); display: none; }
+    .model-details.show { display: block; }
+    .table-responsive { overflow-x: auto; }
+    .kpi-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; background: var(--bg-card); border-radius: 12px; overflow: hidden; font-size: 0.9rem; }
+    .kpi-table th { background: rgba(72, 202, 228, 0.15); color: var(--accent); padding: 1rem; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border-color); }
+    .kpi-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); color: var(--text-muted); }
+    .kpi-table tr:hover td { background: var(--bg-card-hover); color: var(--text-main); }
+    footer { border-top: 1px solid var(--border-color); background: #060B1A; padding: 3rem 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+    footer p { margin-bottom: 0.4rem; }
+    .footer-note { font-size: 0.8rem; color: #64748B; margin-top: 1rem; }
+    @media (max-width: 900px) {
+      .hero-title { font-size: 1.8rem; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-area">POLITÉCNICO <span>GRANCOLOMBIANO</span></div>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#problema">El Reto</a></li>
+        <li><a href="#objetivos">Objetivos</a></li>
+        <li><a href="#caso">Caso & Territorio</a></li>
+        <li><a href="#metodologia">Metodología</a></li>
+        <li><a href="#modelo">Agile PMO</a></li>
+        <li><a href="#ia">IA</a></li>
+        <li><a href="#indicadores">Indicadores</a></li>
+        <li><a href="#documento" class="nav-btn">Tesis Completa</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="badge">Maestría en Gerencia de Proyectos</div>
+      <h1 class="hero-title">Diseño de una Oficina de Gestión de Proyectos Ágil (Agile PMO) Potenciada con Inteligencia Artificial para la Optimización de Iniciativas Comunitarias en el Partido Político MIRA en Cali, Colombia</h1>
+      <p class="subtitle">“De iniciativas dispersas a un portafolio comunitario gestionado con valor, rigor adaptativo e impacto social medible.”</p>
+      
+      <div class="hero-meta">
+        <div><span>Autora:</span> <strong>Norma Rocío Machado Fernández</strong></div>
+        <div><span>Director Metodológico:</span> <strong>Dr. Jairo Enrique Parra Herrera</strong></div>
+        <div><span>Estudio de Caso:</span> <strong>Partido Político MIRA — Cali (13 Comunas)</strong></div>
+      </div>
+
+      <div class="cta-group">
+        <a href="#problema" class="btn btn-primary">Explorar Investigación</a>
+        <a href="#modelo" class="btn btn-secondary">Ver Modelo Propuesto</a>
+      </div>
+    </section>
+
+    <section id="problema" class="container">
+      <div class="section-header">
+        <h2 class="section-title">El Reto de la Gestión Comunitaria</h2>
+        <p class="section-subtitle">Diagnóstico operativo sobre la gestión empírica y reactiva en organizaciones territoriales basadas en voluntariado.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card"><div class="card-icon">📊</div><h3>Falta de Seguimiento</h3><p>Ausencia de trazabilidad formal, registros estandarizados de entregables y métricas de cierre en las actividades barriales.</p></div>
+        <div class="card"><div class="card-icon">🧩</div><h3>Coordinación Fragmentada</h3><p>Esfuerzos aislados entre comités directivos, delegaciones comunales y líderes territoriales.</p></div>
+        <div class="card"><div class="card-icon">🤝</div><h3>Rotación del Voluntariado</h3><p>Desconexión interelectoral y sobrecarga operativa ante la carencia de una propuesta de valor de capital social.</p></div>
+        <div class="card"><div class="card-icon">📖</div><h3>Brechas en Capacitación</h3><p>Baja estandarización en herramientas gerenciales adaptativas y dirección de proyectos comunitarios.</p></div>
+        <div class="card"><div class="card-icon">📡</div><h3>Comunicación Dispersa</h3><p>Canales informales y verticalizados que ralentizan la resolución de impedimentos en los barrios.</p></div>
+        <div class="card"><div class="card-icon">⏹️</div><h3>Inconclusión de Iniciativas</h3><p>Proyectos sociales con alta inversión comunitaria que inician pero no logran culminarse con valor público.</p></div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="question-box">
+        <span class="badge">Pregunta de Investigación</span>
+        <h3>«¿De qué manera el diseño de una Oficina de Gestión de Proyectos Ágil (Agile PMO) potenciada con Inteligencia Artificial optimiza la gestión y ejecución de iniciativas comunitarias en el Partido Político MIRA en Cali, Colombia?»</h3>
+      </div>
+    </section>
+
+    <section id="objetivos" class="container">
+      <div class="section-header">
+        <h2 class="section-title">Objetivos de la Investigación</h2>
+        <p class="section-subtitle">Estructura formal orientada a logros académicos y metodológicos demostrables.</p>
+      </div>
+
+      <div class="card card-highlight">
+        <span class="pill pill-accent">Objetivo General</span>
+        <p class="text-large">Diseñar y evaluar un modelo de Oficina de Gestión de Proyectos Ágil (Agile PMO) potenciada con Inteligencia Artificial para optimizar la gestión y ejecución de las iniciativas comunitarias del Partido Político MIRA en Cali, mediante mecanismos de priorización, seguimiento, medición del impacto social, gestión del voluntariado y continuidad territorial de las intervenciones.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-top: 1.5rem;">
+        <div class="card"><span class="pill">Objetivo Específico 1</span><h3>Diagnóstico Territorial</h3><p>Caracterizar la situación actual de la gestión de iniciativas comunitarias en MIRA Cali, considerando necesidades barriales, dinámicas del voluntariado y cobertura en las 13 comunas.</p></div>
+        <div class="card"><span class="pill">Objetivo Específico 2</span><h3>Línea Base y Medición</h3><p>Establecer la metodología de construcción de línea base desde cero y un sistema multidimensional de indicadores (KPI) para evaluar desempeño, voluntariado, continuidad e impacto social.</p></div>
+        <div class="card"><span class="pill">Objetivo Específico 3</span><h3>Valoración y Gobernanza de IA</h3><p>Identificar y valorar los casos de uso de Inteligencia Artificial con mayor pertinencia, viabilidad técnica y gobernanza responsable para respaldar los procesos de la Agile PMO.</p></div>
+        <div class="card"><span class="pill">Objetivo Específico 4</span><h3>Diseño y Protocolo de Evaluación</h3><p>Diseñar la arquitectura de la Agile PMO impulsada por IA estructurada en las cinco líneas estratégicas y definir el protocolo metodológico para evaluar su contribución a la optimización.</p></div>
+      </div>
+    </section>
+
+    <section id="caso" class="container">
+      <div class="section-header">
+        <h2 class="section-title">Caso de Estudio y Visibilización Territorial</h2>
+        <p class="section-subtitle">Focalización en el Partido Político MIRA en Santiago de Cali y su despliegue en 13 comunas.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Pertinencia y Accesibilidad del Caso</h3>
+          <p>Seleccionado por su sólida estructura de voluntariado (~500 voluntarios activos) y condiciones de acceso e inmersión técnica de la investigadora, respaldadas por salvaguardas éticas y reflexividad investigativa para mitigar sesgos de proximidad.</p>
+        </div>
+        <div class="card">
+          <h3>Operacionalización Territorial (13 Comunas)</h3>
+          <p>La visibilización territorial se operacionaliza en 5 dimensiones observables: (1) Diagnóstico de necesidades, (2) Registro y georreferenciación, (3) Visibilidad en tableros, (4) Monitoreo continuo y (5) Evaluación de impacto local.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 3rem;">5 Líneas Estratégicas de Iniciativas Comunitarias</h3>
+      <div class="grid grid-3" style="margin-top: 1rem;">
+        <div class="card"><div class="card-icon">👵</div><h4>01. Adulto Mayor</h4><p>Acompañamiento psicosocial, alfabetización digital e integración comunitaria para la tercera edad.</p></div>
+        <div class="card"><div class="card-icon">🌱</div><h4>02. Gestión Ambiental</h4><p>Recuperación de entornos ecológicos, reciclaje, educación ambiental y reforestación barrial.</p></div>
+        <div class="card"><div class="card-icon">🛡️</div><h4>03. Seguridad Territorial</h4><p>Prevención temprana de violencias comunitarias y articulación de redes de convivencia ciudadana.</p></div>
+        <div class="card"><div class="card-icon">👩‍👧</div><h4>04. Madres Cabeza de Familia</h4><p>Unidades productivas, microeconomías colaborativas y formación en artes y oficios.</p></div>
+        <div class="card"><div class="card-icon">🎓</div><h4>05. Juventudes</h4><p>Liderazgo juvenil formativo, cultura comunitaria, deporte y aprovechamiento constructivo del tiempo libre.</p></div>
+      </div>
+    </section>
+
+    <section id="metodologia" class="container">
+      <div class="section-header">
+        <h2 class="section-title">Marco Metodológico</h2>
+        <p class="section-subtitle">Enfoque cualitativo en profundidad con medición cuantitativa complementaria (Estudio de caso único).</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Muestra Intencional Cualitativa (N = 12)</h3>
+          <ul class="clean-list">
+            <li><strong>5 Expertos Temáticos Externos:</strong> Gerencia de Proyectos, PMO, Marcos Ágiles e Inteligencia Artificial.</li>
+            <li><strong>7 Actores Territoriales Internos:</strong> 2 Directivos locales, 3 Coordinadores comunales y 2 Voluntarios de base / Enlaces JAC.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Construcción de Línea Base en 5 Fases</h3>
+          <ol class="phase-list">
+            <li><strong>Fase 1:</strong> Construcción de línea base desde cero en las 13 comunas.</li>
+            <li><strong>Fase 2:</strong> Estructuración del modelo Agile PMO y portafolios temáticos.</li>
+            <li><strong>Fase 3:</strong> Selección de usos pertinentes y gobernanza de IA.</li>
+            <li><strong>Fase 4:</strong> Seguimiento y registro de indicadores en territorio.</li>
+            <li><strong>Fase 5:</strong> Evaluación comparativa y evidencia de optimización.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="modelo" class="container">
+      <div class="section-header">
+        <h2 class="section-title">Arquitectura del Modelo Propuesto</h2>
+        <p class="section-subtitle">Flujo conceptual interactivo: haz clic en cada componente para ver su alcance operativo.</p>
+      </div>
+
+      <div class="interactive-model">
+        <div class="model-step" onclick="toggleDetails('det-1')">
+          <div class="step-header"><h4>1. Gobernanza Adaptativa & Comité Estratégico</h4><span class="arrow">▼</span></div>
+          <div id="det-1" class="model-details">Alinea las directrices institucionales y políticas con las prioridades sociales identificadas en las 13 comunas sin imponer burocracia rígida.</div>
+        </div>
+        <div class="model-step" onclick="toggleDetails('det-2')">
+          <div class="step-header"><h4>2. Agile PMO / Value Management Office</h4><span class="arrow">▼</span></div>
+          <div id="det-2" class="model-details">Actúa como facilitadora adaptativa: remueve impedimentos territoriales, estandariza buenas prácticas y gestiona flujos continuos de entrega de valor social.</div>
+        </div>
+        <div class="model-step" onclick="toggleDetails('det-3')">
+          <div class="step-header"><h4>3. Gestión de Portafolio por 5 Dominios</h4><span class="arrow">▼</span></div>
+          <div id="det-3" class="model-details">Estructura las iniciativas en dominios temáticos continuos (Adulto Mayor, Ambiente, Seguridad, Madres Cabeza de Familia y Juventudes) para absorber la complejidad social.</div>
+        </div>
+        <div class="model-step" onclick="toggleDetails('det-4')">
+          <div class="step-header"><h4>4. Inteligencia Artificial como Habilitador</h4><span class="arrow">▼</span></div>
+          <div id="det-4" class="model-details">Integra soluciones analíticas y procesamiento de lenguaje para priorización multicriterio y reducción de sobrecarga administrativa sin fricción tecnológica.</div>
+        </div>
+        <div class="model-step" onclick="toggleDetails('det-5')">
+          <div class="step-header"><h4>5. Gestión del Voluntariado & Capital Social</h4><span class="arrow">▼</span></div>
+          <div id="det-5" class="model-details">Implementa microcompromisos ágiles, reciprocidad, formación continua y reconocimiento público para asegurar alta retención y motivación comunitaria.</div>
+        </div>
+        <div class="model-step" onclick="toggleDetails('det-6')">
+          <div class="step-header"><h4>6. Valor Público en las 13 Comunas</h4><span class="arrow">▼</span></div>
+          <div id="det-6" class="model-details">Garantiza la continuidad de las intervenciones, visibilidad territorial y resolución empírica de problemáticas locales.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ia" class="container">
+      <div class="section-header">
+        <h2 class="section-title">Inteligencia Artificial como Habilitador</h2>
+        <p class="section-subtitle">Enfoque no impositivo: valoración sistemática de pertinencia, usabilidad y gobernanza ética.</p>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="card"><h4>Analítica & Priorización</h4><p>Mapeo de urgencia social y priorización multicriterio basada en datos del territorio.</p><span class="pill pill-pending">Evaluación por pertinencia</span></div>
+        <div class="card"><h4>Procesamiento de Lenguaje</h4><p>Síntesis asistida de actas vecinales, encuestas comunitarias y peticiones de líderes JAC.</p><span class="pill pill-pending">Evaluación por pertinencia</span></div>
+        <div class="card"><h4>Automatización Asistida</h4><p>Generación ágil de reportes ejecutivos para directivos y líderes comunales con baja fricción.</p><span class="pill pill-pending">Evaluación por pertinencia</span></div>
+      </div>
+    </section>
+
+    <section id="indicadores" class="container">
+      <div class="section-header">
+        <h2 class="section-title">Sistema de Medición de Desempeño (KPI)</h2>
+        <p class="section-subtitle">Métricas estandarizadas para evaluar objetivamente la optimización de la gestión.</p>
+      </div>
+
+      <div class="table-responsive">
+        <table class="kpi-table">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre del Indicador</th>
+              <th>Frecuencia</th>
+              <th>Responsable</th>
+              <th>Línea Base</th>
+              <th>Meta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>KPI-01</strong></td><td>Índice de Continuidad de Iniciativas (ICIC)</td><td>Semestral</td><td>Agile PMO Lead</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-02</strong></td><td>Tasa de Cumplimiento de Cronograma (TCCA)</td><td>Mensual</td><td>Facilitador Ágil</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-03</strong></td><td>Tasa de Retención de Voluntarios (TRV)</td><td>Trimestral</td><td>Coord. Voluntariado</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-04</strong></td><td>Índice de Satisfacción del Voluntario (ISV)</td><td>Semestral</td><td>Coord. Voluntariado</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-05</strong></td><td>Satisfacción Comunitaria y Beneficiarios (ISCB)</td><td>Por iniciativa</td><td>Coord. Territorial</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-06</strong></td><td>Cobertura Territorial en 13 Comunas (CTEC)</td><td>Trimestral</td><td>Enlace Territorial</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-07</strong></td><td>Eficiencia en Gestión de Recursos (EGRA)</td><td>Por iniciativa</td><td>Gestor Recursos PMO</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+            <tr><td><strong>KPI-10</strong></td><td>Índice de Valor Público Territorial (IVPT)</td><td>Anual / Fin ciclo</td><td>Director PMO</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="documento" class="container text-center">
+      <div class="section-header">
+        <h2 class="section-title">Consulta del Documento Académico</h2>
+        <p class="section-subtitle">Acceso formal al texto completo de la tesis para revisión docente y evaluación de jurados.</p>
+      </div>
+
+      <div class="card card-doc">
+        <h3>Tesis de Maestría en Gerencia de Proyectos</h3>
+        <p style="margin-bottom: 1.5rem;">Documento completo estructurado bajo Normas APA 7.ª edición y lineamientos del Politécnico Grancolombiano.</p>
+        <a href="https://docs.google.com/document/d/1urCO5aM2feUlexwXrRF8aIKCdz_Llsyv_-SvQ4MSu_k/edit?usp=drive_web" target="_blank" class="btn btn-primary">
+          Consultar Tesis Completa (Google Docs)
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Norma Rocío Machado Fernández</strong> — Maestría en Gerencia de Proyectos</p>
+    <p>Politécnico Grancolombiano • Facultad de Ingeniería, Diseño e Innovación • 2026</p>
+    <p class="footer-note">Proyecto Académico — Trabajo de Grado de Maestría</p>
+  </footer>
+
+  <script>
+    function toggleDetails(id) {
+      const details = document.getElementById(id);
+      const parent = details.closest('.model-step');
+      const isShowing = details.classList.contains('show');
+      
+      document.querySelectorAll('.model-details').forEach(d => d.classList.remove('show'));
+      document.querySelectorAll('.model-step').forEach(s => s.classList.remove('active'));
+
+      if (!isShowing) {
+        details.classList.add('show');
+        parent.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
