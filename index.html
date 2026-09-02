@@ -4,21 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>De la Actividad al Impacto | Modelo Integrado de Inteligencia Territorial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
   
   <style>
     :root {
-      --bg-navy: #060D1F;
-      --bg-dark: #0C1A38;
-      --border-slate: #1E3A6D;
-      --accent-blue: #0056D2;
-      --accent-cyan: #38BDF8;
-      --text-silver: #E2E8F0;
+      --color-navy: #060D1F;
+      --color-dark: #0C1A38;
+      --color-slate: #1E3A6D;
+      --color-teal: #0056D2;
+      --color-mint: #38BDF8;
+      --color-silver: #E2E8F0;
     }
-    html, body {
+    body {
       background-color: #060D1F !important;
       color: #E2E8F0 !important;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
+    .bg-brand-navy { background-color: var(--color-navy) !important; }
+    .bg-brand-dark { background-color: var(--color-dark) !important; }
+    .bg-brand-slate { background-color: var(--color-slate) !important; }
+    .bg-brand-teal { background-color: var(--color-teal) !important; }
+    .bg-brand-mint { background-color: var(--color-mint) !important; }
+    
+    .text-brand-navy { color: var(--color-navy) !important; }
+    .text-brand-dark { color: var(--color-dark) !important; }
+    .text-brand-slate { color: var(--color-slate) !important; }
+    .text-brand-teal { color: var(--color-teal) !important; }
+    .text-brand-mint { color: var(--color-mint) !important; }
+    .text-brand-silver { color: var(--color-silver) !important; }
+
+    .border-brand-slate { border-color: var(--color-slate) !important; }
+    .border-brand-teal { border-color: var(--color-teal) !important; }
+    .border-brand-mint { border-color: var(--color-mint) !important; }
+
     .perspective-1000 { perspective: 1000px; }
     .transform-style-3d { transform-style: preserve-3d; }
     .backface-hidden { backface-visibility: hidden; }
@@ -32,38 +54,13 @@
       animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
     }
   </style>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              navy: '#060D1F',
-              dark: '#0C1A38',
-              slate: '#1E3A6D',
-              teal: '#0056D2',
-              mint: '#38BDF8',
-              silver: '#E2E8F0'
-            }
-          }
-        }
-      }
-    }
-  </script>
 </head>
 <body class="bg-brand-navy text-brand-silver selection:bg-brand-teal selection:text-white antialiased">
 
-  <header class="fixed top-0 inset-x-0 z-50 bg-[#060D1F]/90 backdrop-blur-md border-b border-[#1E3A6D]/50">
+  <header class="fixed top-0 inset-x-0 z-50 bg-[#060D1F]/90 backdrop-blur-md border-b border-[#1E3A6D]/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <span class="p-1.5 bg-brand-teal/10 border border-brand-teal/40 rounded-lg text-brand-mint">
+        <span class="p-1.5 bg-[#0056D2]/20 border border-[#0056D2]/50 rounded-lg text-brand-mint">
           <i data-lucide="network" class="w-5 h-5"></i>
         </span>
         <span class="font-bold text-sm sm:text-base tracking-tight text-white">SIT MIRA | Inteligencia Territorial</span>
@@ -75,7 +72,7 @@
         <a href="#modelo" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">El Modelo</a>
         <a href="#portafolio" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">Portafolio</a>
         <a href="#ia-pmo" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">IA & PMO</a>
-        <a href="#piloto" class="px-3 py-2 rounded-lg text-brand-mint font-semibold bg-brand-teal/10 border border-brand-teal/30 hover:bg-brand-teal/20 transition">Piloto Cali</a>
+        <a href="#piloto" class="px-3 py-2 rounded-lg text-brand-mint font-semibold bg-[#0056D2]/20 border border-[#0056D2]/40 hover:bg-[#0056D2]/30 transition">Piloto Cali</a>
       </nav>
       <a href="#cierre" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition text-white">
         <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-mint"></i>
@@ -85,15 +82,15 @@
   </header>
 
   <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden border-b border-brand-slate/30">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#0C1A3840_1px,transparent_1px),linear-gradient(to_bottom,#0C1A3840_1px,transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1E3A6D20_1px,transparent_1px),linear-gradient(to_bottom,#1E3A6D20_1px,transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
     
     <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
       <div class="relative w-full max-w-4xl h-[520px] opacity-30 sm:opacity-40">
         <div class="absolute top-[65%] left-[30%] pointer-events-auto group cursor-pointer">
           <div class="relative flex items-center justify-center">
-            <span class="absolute w-8 h-8 rounded-full bg-brand-mint/30 ping-slow"></span>
+            <span class="absolute w-8 h-8 rounded-full bg-[#0056D2]/30 ping-slow"></span>
             <span class="relative w-3.5 h-3.5 bg-brand-mint rounded-full shadow-[0_0_12px_#38BDF8]"></span>
-            <div class="absolute left-6 top-1/2 -translate-y-1/2 hidden group-hover:block w-48 bg-brand-dark/95 border border-brand-mint/50 p-3 rounded-lg shadow-xl backdrop-blur-md z-30 transition">
+            <div class="absolute left-6 top-1/2 -translate-y-1/2 hidden group-hover:block w-48 bg-brand-dark/95 border border-brand-teal/50 p-3 rounded-lg shadow-xl backdrop-blur-md z-30 transition">
               <p class="text-xs font-bold text-brand-mint uppercase tracking-wider">Nodo Santiago de Cali</p>
               <p class="text-[11px] text-slate-300 mt-1">13 Comunas estructuradas. Red base comunal activa.</p>
             </div>
@@ -115,7 +112,7 @@
     </div>
 
     <div class="relative max-w-4xl mx-auto text-center z-10">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/20 border border-brand-teal/40 text-brand-mint text-xs font-semibold mb-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-teal/20 border border-brand-teal/40 text-brand-mint text-xs font-semibold mb-6">
         <i data-lucide="shield-check" class="w-4 h-4"></i>
         GESTIONAR LAS INICIATIVAS SOCIALES Y POLÍTICAS COMO UN PROYECTO
       </div>
@@ -134,7 +131,7 @@
       </blockquote>
 
       <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#modelo" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brand-teal hover:bg-blue-600 text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-900/40 transition flex items-center justify-center gap-2">
+        <a href="#modelo" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brand-teal hover:bg-blue-700 text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-900/40 transition flex items-center justify-center gap-2">
           Explorar el Nuevo Modelo Territorial
           <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
         </a>
@@ -160,7 +157,7 @@
     </div>
 
     <div class="grid md:grid-cols-2 gap-6 items-stretch">
-      <div id="card-current" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/70 border border-red-500/30 transition duration-300">
+      <div id="card-current" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/60 border border-red-500/30 transition duration-300">
         <div class="flex items-center justify-between pb-4 border-b border-red-500/20">
           <div class="flex items-center gap-2 text-red-400">
             <i data-lucide="alert-triangle" class="w-5 h-5"></i>
@@ -202,7 +199,7 @@
         </div>
       </div>
 
-      <div id="card-proposed" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/70 border border-brand-teal/40 transition duration-300">
+      <div id="card-proposed" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/60 border border-brand-teal/40 transition duration-300">
         <div class="flex items-center justify-between pb-4 border-b border-brand-teal/20">
           <div class="flex items-center gap-2 text-brand-mint">
             <i data-lucide="check-circle-2" class="w-5 h-5"></i>
@@ -272,7 +269,7 @@
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 text-sm">
-        <div class="p-5 rounded-xl bg-brand-dark/90 border border-brand-slate/40 flex flex-col justify-between">
+        <div class="p-5 rounded-xl bg-[#081533] border border-brand-slate/40 flex flex-col justify-between">
           <div>
             <div class="flex items-center gap-2 mb-2">
               <span class="w-2 h-2 rounded-full bg-amber-400"></span>
@@ -287,3 +284,143 @@
             <strong>Vacío Empírico:</strong> Información pendiente de validación (no existen transcripciones ni datos empíricos de campo en los documentos que demuestren resultados previos).
           </div>
         </div>
+
+        <div class="p-5 rounded-xl bg-[#081533] border border-brand-slate/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-red-400"></span>
+              <h4 class="font-bold text-white text-xs uppercase tracking-wide">Discrepancia Geográfica</h4>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 border border-amber-800 text-amber-300">HALLAZGO [1, 9]</span>
+            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+              Existe una divergencia analítica crítica: la introducción alude a cubrir las 22 comunas de Cali, pero el marco metodológico y la cobertura presupuestaria restringen la red operativa únicamente a 13 comunas.
+            </p>
+          </div>
+          <div class="mt-4 p-2.5 rounded bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-200">
+            <strong>Atención:</strong> Información pendiente de validación sobre detalle y viabilidad financiera para las 9 comunas restantes.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-[#081533] border border-brand-slate/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <h4 class="font-bold text-white text-xs uppercase tracking-wide">Fortaleza Territorial</h4>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300">EVIDENCIA [1, 10]</span>
+            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+              El partido posee personería jurídica y enlaces consolidados con las Juntas de Acción Comunal (JAC). Se cuenta con un rol activo de inmersión técnica de ~20 años en la colectividad, asegurando acceso prioritario y confianza.
+            </p>
+          </div>
+          <div class="mt-4 p-2.5 rounded bg-brand-dark/80 border border-brand-slate/50 text-[11px] text-slate-300">
+            <strong>Riesgo Asociado:</strong> Fragilidad operativa en los enlaces por sobrecarga de reportes manuales e informalidad en el registro.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-cali-pmo" class="hidden bg-brand-dark/50 border border-brand-teal/50 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-4 pb-4 border-b border-brand-teal/30">
+        <div>
+          <h3 class="text-lg font-bold text-white">Capacidad Instalada y Gestión de Valor</h3>
+          <p class="text-xs text-brand-mint">Solución metodológica: Oficina de Gestión de Valor y Gobierno de Datos en Origen</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-teal/20 text-brand-mint border border-brand-teal/40">Propuesta de Valor</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div class="p-5 rounded-xl bg-[#081533] border border-brand-teal/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-brand-mint"></span>
+              <h4 class="font-bold text-white text-xs uppercase tracking-wide">Gobernanza con Datos Reales</h4>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950/60 border border-brand-teal text-brand-mint">SIT MIRA [AMAD]</span>
+            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+              Implementación del Aseguramiento Metodológico y del Dato (AMAD) quincenal. Se eliminan los vacíos empíricos convirtiendo cada acción barrial en un registro georreferenciado limpio y auditable desde el primer sprint.
+            </p>
+          </div>
+          <div class="mt-4 p-2.5 rounded bg-blue-950/50 border border-brand-teal/40 text-[11px] text-brand-mint">
+            <strong>Solución:</strong> Trazabilidad metodológica rigurosa para sustentar la gestión comunitaria e institucional.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-[#081533] border border-brand-teal/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
+              <h4 class="font-bold text-white text-xs uppercase tracking-wide">Focalización Estratégica</h4>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950/60 border border-brand-teal text-brand-mint">DESPLIEGUE CONTROLADO</span>
+            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+              La PMO resuelve la discrepancia geográfica: inicia con un piloto controlado de 12 semanas en 3 comunas críticas (ej. 13, 14 y 21) y consolida la metodología antes de expandir con presupuesto asegurado a las 13 comunas viables.
+            </p>
+          </div>
+          <div class="mt-4 p-2.5 rounded bg-blue-950/50 border border-brand-teal/40 text-[11px] text-brand-mint">
+            <strong>Solución:</strong> Cero dispersión presupuestal. Cada recurso y hora voluntaria se asigna con retorno medible.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-[#081533] border border-brand-teal/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+              <h4 class="font-bold text-white text-xs uppercase tracking-wide">Cuidado de la Base (Agilidad)</h4>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950/60 border border-brand-teal text-brand-mint">MICROCOMPROMISOS + IA</span>
+            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+              Potenciamos el vínculo de ~20 años con las JAC protegiendo al voluntario: tareas divididas en bloques de 2 horas y reportes automáticos por notas de voz de WhatsApp procesadas con IA invisible, sin formatos burocráticos.
+            </p>
+          </div>
+          <div class="mt-4 p-2.5 rounded bg-blue-950/50 border border-brand-teal/40 text-[11px] text-brand-mint">
+            <strong>Solución:</strong> Alta tasa de retención comunitaria, combate activo de la soledad y valor social recíproco.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 px-4 bg-gradient-to-b from-[#060D1F] via-[#0C1A38]/70 to-[#060D1F] border-b border-brand-slate/30">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center justify-center p-3 rounded-full bg-brand-teal/20 text-brand-mint mb-4 border border-brand-teal/40">
+        <i data-lucide="sparkles" class="w-6 h-6"></i>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">La Oportunidad de Liderar con Inteligencia</h2>
+      <div class="mt-6 p-6 sm:p-8 rounded-2xl bg-[#0C1A38] border border-brand-teal/40 shadow-2xl relative overflow-hidden">
+        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-brand-teal/30 text-brand-mint font-semibold uppercase tracking-wider block w-fit mx-auto mb-4">
+          Interpretación Consultiva
+        </span>
+        <p class="text-slate-200 text-base sm:text-lg leading-relaxed text-justify sm:text-center">
+          Gestionar las iniciativas sociales y políticas como proyectos permite transformar las necesidades del territorio en acciones priorizadas, resultados medibles y valor social. El modelo integra Inteligencia Territorial, una PMO Ágil, datos e Inteligencia Artificial para fortalecer la toma de decisiones y convertir la gestión territorial en un proceso medible, reproducible y sostenible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="modelo" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="text-brand-mint font-semibold text-xs tracking-wider uppercase">Arquitectura del Proceso</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Sistema Territorial de Lazo Cerrado</h2>
+      <p class="text-slate-400 text-sm mt-2">10 estaciones concatenadas que transforman la necesidad del barrio en memoria de gestión y valor social.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-8" id="stations-grid"></div>
+
+    <div id="station-detail" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/80 border border-brand-teal/40 transition-all duration-300"></div>
+  </section>
+
+  <section id="ia-pmo" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      
+      <div>
+        <div class="mb-6">
+          <span class="text-brand-mint font-semibold text-xs tracking-wider uppercase">Oficina de Gestión de Valor</span>
+          <h2 class="text-2xl font-bold text-white mt-1">La PMO que Trabaja en el Idioma de la Gente</h2>
+          <p class="text-xs text-slate-400 mt-1">Pasa el cursor o toca la tarjeta para contrastar la PMO tradicional con el enfoque adaptativo.</p>
+        </div>
+
+        <div class="group h-80 perspective-1000 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div id="flip-card-inner" class="relative w-full h-full duration-700 transform-style-3d group-hover:rotate-y-180 group-[.flipped]:rotate-y-180">
+            <div class="absolute inset-0 bg-brand-dark border border-brand-slate/60 p-6 rounded-2xl backface-hidden flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-slate-300
