@@ -1,345 +1,1070 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tesis de Maestría | Agile PMO Y IA — MIRA Cali</title>
-  <meta name="description" content="Presentación interactiva de la tesis de Maestría en Gerencia de Proyectos: Diseño de una Agile PMO potenciada con IA para iniciativas comunitarias en Cali.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De la Actividad al Impacto | Modelo Integrado de Inteligencia Territorial</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Lucide Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-main: #0B132B;
-      --bg-card: rgba(28, 37, 65, 0.85);
-      --bg-card-hover: rgba(45, 59, 99, 0.95);
-      --accent: #48CAE4;
-      --accent-glow: rgba(72, 202, 228, 0.25);
-      --text-main: #FFFFFF;
-      --text-muted: #CBD5E1;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --border-accent: rgba(72, 202, 228, 0.4);
-      --header-bg: rgba(11, 19, 43, 0.95);
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0B132B',
+              dark: '#1C2541',
+              slate: '#3A506B',
+              teal: '#5BC0BE',
+              mint: '#6FFFE9',
+              silver: '#E0E6ED'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family); }
-    html { scroll-behavior: smooth; }
-    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-    header { position: sticky; top: 0; z-index: 1000; background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo-area { font-weight: 700; font-size: 1.05rem; color: var(--text-main); }
-    .logo-area span { color: var(--accent); }
-    nav ul { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
-    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.3s; }
-    nav a:hover, nav a.active { color: var(--accent); }
-    .nav-btn { padding: 0.4rem 0.9rem; border: 1px solid var(--border-accent); border-radius: 6px; background: var(--accent-glow); color: var(--accent) !important; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 4.5rem 2rem; }
-    .text-center { text-align: center; }
-    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 2rem 4rem 2rem; background: radial-gradient(circle at center, rgba(28, 37, 65, 0.7) 0%, rgba(11, 19, 43, 1) 75%); border-bottom: 1px solid var(--border-color); }
-    .badge { display: inline-block; padding: 0.4rem 1rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-accent); border-radius: 50px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 1.5rem; text-transform: uppercase; }
-    .hero-title { font-size: 2.2rem; font-weight: 800; max-width: 950px; line-height: 1.3; margin-bottom: 1.5rem; color: var(--text-main); }
-    .subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin-bottom: 2.5rem; }
-    .hero-meta { display: flex; gap: 2rem; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center; }
-    .hero-meta strong { color: var(--text-main); }
-    .cta-group { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
-    .btn { padding: 0.85rem 1.8rem; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 0.95rem; transition: all 0.3s; cursor: pointer; display: inline-flex; align-items: center; }
-    .btn-primary { background-color: var(--accent); color: var(--bg-main); border: 1px solid var(--accent); box-shadow: 0 4px 15px var(--accent-glow); }
-    .btn-primary:hover { background-color: #64D2E8; transform: translateY(-2px); }
-    .btn-secondary { background-color: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); background-color: var(--accent-glow); transform: translateY(-2px); }
-    .section-header { margin-bottom: 3rem; }
-    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-main); }
-    .section-subtitle { font-size: 1.05rem; color: var(--text-muted); max-width: 750px; }
-    .subsection-title { font-size: 1.3rem; color: var(--accent); font-weight: 600; }
-    .grid { display: grid; gap: 1.5rem; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.8rem; transition: all 0.3s; }
-    .card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-    .card-highlight { border-left: 4px solid var(--accent); }
-    .card-doc { max-width: 650px; margin: 0 auto; padding: 2.5rem; }
-    .card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .card h3, .card h4 { font-size: 1.2rem; margin-bottom: 0.8rem; color: var(--text-main); }
-    .card p { color: var(--text-muted); font-size: 0.95rem; }
-    .text-large { font-size: 1.05rem; color: var(--text-main); }
-    .question-box { background: linear-gradient(135deg, rgba(28, 37, 65, 0.9) 0%, rgba(11, 19, 43, 0.9) 100%); border: 1px solid var(--border-accent); border-left: 6px solid var(--accent); padding: 2.5rem; border-radius: 12px; margin: 2rem 0; box-shadow: 0 10px 30px var(--accent-glow); }
-    .question-box h3 { font-size: 1.3rem; line-height: 1.5; font-style: italic; color: #E2E8F0; margin-top: 0.8rem; }
-    .pill { display: inline-block; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: rgba(255, 255, 255, 0.1); color: var(--text-main); margin-bottom: 0.5rem; }
-    .pill-accent { background: var(--accent); color: var(--bg-main); }
-    .pill-pending { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.4); }
-    .clean-list { list-style: none; margin-top: 1rem; }
-    .clean-list li { margin-bottom: 0.8rem; color: var(--text-muted); font-size: 0.95rem; }
-    .phase-list { padding-left: 1.2rem; margin-top: 1rem; color: var(--text-muted); }
-    .phase-list li { margin-bottom: 0.6rem; font-size: 0.92rem; }
-    .interactive-model { display: flex; flex-direction: column; gap: 1rem; max-width: 850px; margin: 2rem auto; }
-    .model-step { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.2rem 1.8rem; cursor: pointer; transition: all 0.3s; }
-    .model-step:hover, .model-step.active { border-color: var(--accent); background: var(--bg-card-hover); box-shadow: 0 4px 15px var(--accent-glow); }
-    .step-header { display: flex; justify-content: space-between; align-items: center; }
-    .step-header h4 { font-size: 1.05rem; color: var(--text-main); }
-    .step-header .arrow { color: var(--accent); font-size: 0.9rem; }
-    .model-details { background: rgba(11, 19, 43, 0.95); border: 1px dashed var(--border-accent); padding: 1.2rem; border-radius: 8px; margin-top: 0.8rem; font-size: 0.92rem; color: var(--text-muted); display: none; }
-    .model-details.show { display: block; }
-    .table-responsive { overflow-x: auto; }
-    .kpi-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; background: var(--bg-card); border-radius: 12px; overflow: hidden; font-size: 0.9rem; }
-    .kpi-table th { background: rgba(72, 202, 228, 0.15); color: var(--accent); padding: 1rem; text-align: left; font-weight: 600; border-bottom: 1px solid var(--border-color); }
-    .kpi-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); color: var(--text-muted); }
-    .kpi-table tr:hover td { background: var(--bg-card-hover); color: var(--text-main); }
-    footer { border-top: 1px solid var(--border-color); background: #060B1A; padding: 3rem 2rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
-    footer p { margin-bottom: 0.4rem; }
-    .footer-note { font-size: 0.8rem; color: #64748B; margin-top: 1rem; }
-    @media (max-width: 900px) {
-      .hero-title { font-size: 1.8rem; }
-      nav ul { flex-wrap: wrap; justify-content: center; }
+  </script>
+  <style>
+    .perspective-1000 { perspective: 1000px; }
+    .transform-style-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.4); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
+    }
+    .ping-slow {
+      animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
     }
   </style>
 </head>
-<body>
+<body class="bg-brand-navy text-brand-silver font-sans selection:bg-brand-teal selection:text-brand-navy antialiased">
 
-  <header>
-    <div class="logo-area">POLITÉCNICO <span>GRANCOLOMBIANO</span></div>
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#problema">El Reto</a></li>
-        <li><a href="#objetivos">Objetivos</a></li>
-        <li><a href="#caso">Caso & Territorio</a></li>
-        <li><a href="#metodologia">Metodología</a></li>
-        <li><a href="#modelo">Agile PMO</a></li>
-        <li><a href="#ia">IA</a></li>
-        <li><a href="#indicadores">Indicadores</a></li>
-        <li><a href="#documento" class="nav-btn">Tesis Completa</a></li>
-      </ul>
-    </nav>
+  <!-- BARRA DE NAVEGACIÓN -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-brand-navy/90 backdrop-blur-md border-b border-brand-slate/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="p-1.5 bg-brand-teal/10 border border-brand-teal/40 rounded-lg text-brand-teal">
+          <i data-lucide="network" class="w-5 h-5"></i>
+        </span>
+        <span class="font-bold text-sm sm:text-base tracking-tight text-white">Inteligencia Territorial</span>
+      </div>
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm font-medium text-slate-300">
+        <a href="#hero" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">Inicio</a>
+        <a href="#problema" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">El Problema</a>
+        <a href="#territorios" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">Territorios</a>
+        <a href="#modelo" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">El Modelo</a>
+        <a href="#portafolio" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">Portafolio</a>
+        <a href="#ia-pmo" class="px-3 py-2 rounded-lg hover:text-brand-mint hover:bg-brand-dark/50 transition">IA & PMO</a>
+        <a href="#piloto" class="px-3 py-2 rounded-lg text-brand-mint font-semibold bg-brand-teal/10 border border-brand-teal/30 hover:bg-brand-teal/20 transition">Piloto Cali</a>
+      </nav>
+      <a href="#cierre" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition text-white">
+        <i data-lucide="file-text" class="w-3.5 h-3.5 text-brand-teal"></i>
+        Cierre Ejecutivo
+      </a>
+    </div>
   </header>
 
-  <main>
-    <section id="inicio" class="hero">
-      <div class="badge">Maestría en Gerencia de Proyectos</div>
-      <h1 class="hero-title">Diseño de una Oficina de Gestión de Proyectos Ágil (Agile PMO) Potenciada con Inteligencia Artificial para la Optimización de Iniciativas Comunitarias en el Partido Político MIRA en Cali, Colombia</h1>
-      <p class="subtitle">“De iniciativas dispersas a un portafolio comunitario gestionado con valor, rigor adaptativo e impacto social medible.”</p>
-      
-      <div class="hero-meta">
-        <div><span>Autora:</span> <strong>Norma Rocío Machado Fernández</strong></div>
-        <div><span>Director Metodológico:</span> <strong>Dr. Jairo Enrique Parra Herrera</strong></div>
-        <div><span>Estudio de Caso:</span> <strong>Partido Político MIRA — Cali (22 Comunas)</strong></div>
-      </div>
-
-      <div class="cta-group">
-        <a href="#problema" class="btn btn-primary">Explorar Investigación</a>
-        <a href="#modelo" class="btn btn-secondary">Ver Modelo Propuesto</a>
-      </div>
-    </section>
-
-    <section id="problema" class="container">
-      <div class="section-header">
-        <h2 class="section-title">El Reto de la Gestión Comunitaria</h2>
-        <p class="section-subtitle">Diagnóstico operativo sobre la gestión empírica y reactiva en organizaciones territoriales basadas en voluntariado.</p>
-      </div>
-
-      <div class="grid grid-3">
-        <div class="card"><div class="card-icon">📊</div><h3>Falta de Seguimiento</h3><p>Ausencia de trazabilidad formal, registros estandarizados de entregables y métricas de cierre en las actividades barriales.</p></div>
-        <div class="card"><div class="card-icon">🧩</div><h3>Coordinación Fragmentada</h3><p>Esfuerzos aislados entre comités directivos, delegaciones comunales y líderes territoriales.</p></div>
-        <div class="card"><div class="card-icon">🤝</div><h3>Rotación del Voluntariado</h3><p>Desconexión interelectoral y sobrecarga operativa ante la carencia de una propuesta de valor de capital social.</p></div>
-        <div class="card"><div class="card-icon">📖</div><h3>Brechas en Capacitación</h3><p>Baja estandarización en herramientas gerenciales adaptativas y dirección de proyectos comunitarios.</p></div>
-        <div class="card"><div class="card-icon">📡</div><h3>Comunicación Dispersa</h3><p>Canales informales y verticalizados que ralentizan la resolución de impedimentos en los barrios.</p></div>
-        <div class="card"><div class="card-icon">⏹️</div><h3>Inconclusión de Iniciativas</h3><p>Proyectos sociales con alta inversión comunitaria que inician pero no logran culminarse con valor público.</p></div>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="question-box">
-        <span class="badge">Pregunta de Investigación</span>
-        <h3>«¿De qué manera el diseño de una Oficina de Gestión de Proyectos Ágil (Agile PMO) potenciada con Inteligencia Artificial optimiza la gestión y ejecución de iniciativas comunitarias en el Partido Político MIRA en Cali, Colombia?»</h3>
-      </div>
-    </section>
-
-    <section id="objetivos" class="container">
-      <div class="section-header">
-        <h2 class="section-title">Objetivos de la Investigación</h2>
-        <p class="section-subtitle">Estructura formal orientada a logros académicos y metodológicos demostrables.</p>
-      </div>
-
-      <div class="card card-highlight">
-        <span class="pill pill-accent">Objetivo General</span>
-        <p class="text-large">Diseñar y evaluar un modelo de Oficina de Gestión de Proyectos Ágil (Agile PMO) potenciada con Inteligencia Artificial para optimizar la gestión y ejecución de las iniciativas comunitarias del Partido Político MIRA en Cali, mediante mecanismos de priorización, seguimiento, medición del impacto social, gestión del voluntariado y continuidad territorial de las intervenciones.</p>
-      </div>
-
-      <div class="grid grid-2" style="margin-top: 1.5rem;">
-        <div class="card"><span class="pill">Objetivo Específico 1</span><h3>Diagnóstico Territorial</h3><p>Caracterizar la situación actual de la gestión de iniciativas comunitarias en MIRA Cali, considerando necesidades barriales, dinámicas del voluntariado y cobertura en las 22 comunas.</p></div>
-        <div class="card"><span class="pill">Objetivo Específico 2</span><h3>Línea Base y Medición</h3><p>Establecer la metodología de construcción de línea base desde cero y un sistema multidimensional de indicadores (KPI) para evaluar desempeño, voluntariado, continuidad e impacto social.</p></div>
-        <div class="card"><span class="pill">Objetivo Específico 3</span><h3>Valoración y Gobernanza de IA</h3><p>Identificar y valorar los casos de uso de Inteligencia Artificial con mayor pertinencia, viabilidad técnica y gobernanza responsable para respaldar los procesos de la Agile PMO.</p></div>
-        <div class="card"><span class="pill">Objetivo Específico 4</span><h3>Diseño y Protocolo de Evaluación</h3><p>Diseñar la arquitectura de la Agile PMO impulsada por IA estructurada en las cinco líneas estratégicas y definir el protocolo metodológico para evaluar su contribución a la optimización.</p></div>
-      </div>
-    </section>
-
-    <section id="caso" class="container">
-      <div class="section-header">
-        <h2 class="section-title">Caso de Estudio y Visibilización Territorial</h2>
-        <p class="section-subtitle">Focalización en el Partido Político MIRA en Santiago de Cali y su despliegue en 22 comunas.</p>
-      </div>
-
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Pertinencia y Accesibilidad del Caso</h3>
-          <p>Seleccionado por su sólida estructura de voluntariado (Una estructura territorial basada en una amplia participación de  voluntarios activos) y condiciones de acceso e inmersión técnica de la investigadora, respaldadas por salvaguardas éticas y reflexividad investigativa para mitigar sesgos de proximidad.</p>
+  <!-- SEC-01: HERO SECTION -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden border-b border-brand-slate/30">
+    <!-- Grid y Nodos del Mapa semitransparente -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1C254120_1px,transparent_1px),linear-gradient(to_bottom,#1C254120_1px,transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+    
+    <!-- Mapa Conceptual con Nodos Georreferenciados -->
+    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+      <div class="relative w-full max-w-4xl h-[520px] opacity-30 sm:opacity-40">
+        <!-- Cali Node -->
+        <div class="absolute top-[65%] left-[28%] pointer-events-auto group cursor-pointer">
+          <div class="relative flex items-center justify-center">
+            <span class="absolute w-8 h-8 rounded-full bg-brand-teal/30 ping-slow"></span>
+            <span class="relative w-3.5 h-3.5 bg-brand-teal rounded-full shadow-[0_0_12px_#5BC0BE]"></span>
+            <!-- Quick Facts Popover -->
+            <div class="absolute left-6 top-1/2 -translate-y-1/2 hidden group-hover:block w-48 bg-brand-dark/95 border border-brand-teal/50 p-3 rounded-lg shadow-xl backdrop-blur-md z-30 transition">
+              <p class="text-xs font-bold text-brand-mint uppercase tracking-wider">Nodo Santiago de Cali</p>
+              <p class="text-[11px] text-slate-300 mt-1">13 Comunas estructuradas presupuestalmente. Red base JAC activa.</p>
+            </div>
+          </div>
+          <span class="text-[10px] uppercase font-bold text-slate-400 mt-1 block">Cali</span>
         </div>
-        <div class="card">
-          <h3>Operacionalización Territorial (22 Comunas)</h3>
-          <p>La visibilización territorial se operacionaliza en 5 dimensiones observables: (1) Diagnóstico de necesidades, (2) Registro y georreferenciación, (3) Visibilidad en tableros, (4) Monitoreo continuo y (5) Evaluación de impacto local.</p>
+
+        <!-- Medellín Node -->
+        <div class="absolute top-[40%] left-[36%] pointer-events-auto group cursor-pointer">
+          <div class="relative flex items-center justify-center">
+            <span class="absolute w-8 h-8 rounded-full bg-brand-mint/30 ping-slow"></span>
+            <span class="relative w-3.5 h-3.5 bg-brand-mint rounded-full shadow-[0_0_12px_#6FFFE9]"></span>
+            <div class="absolute left-6 top-1/2 -translate-y-1/2 hidden group-hover:block w-52 bg-brand-dark/95 border border-brand-mint/50 p-3 rounded-lg shadow-xl backdrop-blur-md z-30 transition">
+              <p class="text-xs font-bold text-brand-mint uppercase tracking-wider">Distrito de Medellín</p>
+              <p class="text-[11px] text-slate-300 mt-1">16 Comunas + 5 Corregimientos. +220k microintervenciones AMAD.</p>
+            </div>
+          </div>
+          <span class="text-[10px] uppercase font-bold text-slate-400 mt-1 block">Medellín</span>
+        </div>
+
+        <!-- Bogotá Node -->
+        <div class="absolute top-[50%] left-[45%] pointer-events-auto group cursor-pointer">
+          <div class="relative flex items-center justify-center">
+            <span class="w-3 h-3 bg-slate-400 rounded-full"></span>
+            <div class="absolute left-5 top-1/2 -translate-y-1/2 hidden group-hover:block w-44 bg-brand-dark/95 border border-slate-600 p-2.5 rounded-lg shadow-xl z-30">
+              <p class="text-xs font-bold text-slate-200">Bogotá D.C.</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Nodo de Consolidación Legislativa y Escalamiento.</p>
+            </div>
+          </div>
+          <span class="text-[10px] uppercase font-bold text-slate-500 mt-1 block">Bogotá</span>
         </div>
       </div>
+    </div>
 
-      <h3 class="subsection-title" style="margin-top: 3rem;">5 Líneas Estratégicas de Iniciativas Comunitarias</h3>
-      <div class="grid grid-3" style="margin-top: 1rem;">
-        <div class="card"><div class="card-icon">👵</div><h4>01. Adulto Mayor</h4><p>Acompañamiento psicosocial, alfabetización digital e integración comunitaria para la tercera edad.</p></div>
-        <div class="card"><div class="card-icon">🌱</div><h4>02. Gestión Ambiental</h4><p>Recuperación de entornos ecológicos, reciclaje, educación ambiental y reforestación barrial.</p></div>
-        <div class="card"><div class="card-icon">🛡️</div><h4>03. Seguridad Territorial</h4><p>Prevención temprana de violencias comunitarias y articulación de redes de convivencia ciudadana.</p></div>
-        <div class="card"><div class="card-icon">👩‍👧</div><h4>04. Madres Cabeza de Familia</h4><p>Unidades productivas, microeconomías colaborativas y formación en artes y oficios.</p></div>
-        <div class="card"><div class="card-icon">🎓</div><h4>05. Juventudes</h4><p>Liderazgo juvenil formativo, cultura comunitaria, deporte y aprovechamiento constructivo del tiempo libre.</p></div>
+    <div class="relative max-w-4xl mx-auto text-center z-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-semibold mb-6">
+        <i data-lucide="shield-check" class="w-4 h-4"></i>
+        Insumo Estratégico para la Senadora de la República
       </div>
-    </section>
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        De la Actividad Aislada <br class="hidden sm:block">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal via-brand-mint to-white">
+          al Impacto Territorial
+        </span>
+      </h1>
+      <p class="mt-4 text-lg sm:text-xl font-medium text-slate-300">
+        Gestionar con Evidencia, Liderar con Valor.
+      </p>
 
-    <section id="metodologia" class="container">
-      <div class="section-header">
-        <h2 class="section-title">Marco Metodológico</h2>
-        <p class="section-subtitle">Enfoque cualitativo en profundidad con medición cuantitativa complementaria (Estudio de caso único).</p>
-      </div>
+      <blockquote class="mt-8 mx-auto max-w-2xl px-6 py-4 rounded-xl bg-brand-dark/60 border-l-4 border-brand-teal text-slate-200 text-sm sm:text-base italic leading-relaxed backdrop-blur-sm">
+        "El verdadero poder de un partido político no se mide por la cantidad de reuniones que realiza, sino por el valor social que es capaz de sostener, medir y multiplicar en el territorio."
+      </blockquote>
 
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>Muestra Intencional Cualitativa (N = 12)</h3>
-          <ul class="clean-list">
-            <li><strong>4 Expertos Temáticos Externos:</strong> Gerencia de Proyectos, PMO, Marcos Ágiles e Inteligencia Artificial.</li>
-            <li><strong> Actores Territoriales Internos:</strong> Delegación, Coordinadores comunales y Voluntarios de base / Enlaces JAC.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Construcción de Línea Base en 5 Fases</h3>
-          <ol class="phase-list">
-            <li><strong>Fase 1:</strong> Construcción de línea base desde cero en las 22 comunas.</li>
-            <li><strong>Fase 2:</strong> Estructuración del modelo Agile PMO y portafolios temáticos.</li>
-            <li><strong>Fase 3:</strong> Selección de usos pertinentes y gobernanza de IA.</li>
-            <li><strong>Fase 4:</strong> Seguimiento y registro de indicadores en territorio.</li>
-            <li><strong>Fase 5:</strong> Definición del protocolo de evaluación de la contribución de votos esperada con iniciativas de impacto social real para la comunidad.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section id="modelo" class="container">
-      <div class="section-header">
-        <h2 class="section-title">Arquitectura del Modelo Propuesto</h2>
-        <p class="section-subtitle">Flujo conceptual interactivo: haz clic en cada componente para ver su alcance operativo.</p>
-      </div>
-
-      <div class="interactive-model">
-        <div class="model-step" onclick="toggleDetails('det-1')">
-          <div class="step-header"><h4>1. Gobernanza Adaptativa & Comité Estratégico</h4><span class="arrow">▼</span></div>
-          <div id="det-1" class="model-details">Alinea las directrices institucionales y políticas con las prioridades sociales identificadas en las 22 comunas sin imponer burocracia rígida.</div>
-        </div>
-        <div class="model-step" onclick="toggleDetails('det-2')">
-          <div class="step-header"><h4>2. Agile PMO / Value Management Office</h4><span class="arrow">▼</span></div>
-          <div id="det-2" class="model-details">Actúa como facilitadora adaptativa: remueve impedimentos territoriales, estandariza buenas prácticas y gestiona flujos continuos de entrega de valor social.</div>
-        </div>
-        <div class="model-step" onclick="toggleDetails('det-3')">
-          <div class="step-header"><h4>3. Gestión de Portafolio por 5 Dominios</h4><span class="arrow">▼</span></div>
-          <div id="det-3" class="model-details">Estructura las iniciativas en dominios temáticos continuos (Adulto Mayor, Ambiente, Seguridad, Madres Cabeza de Familia y Juventudes) para absorber la complejidad social.</div>
-        </div>
-        <div class="model-step" onclick="toggleDetails('det-4')">
-          <div class="step-header"><h4>4. Inteligencia Artificial como Habilitador</h4><span class="arrow">▼</span></div>
-          <div id="det-4" class="model-details">No están definidas como solución previa. Son casos de uso potenciales que serán valorados mediante criterios de pertinencia, viabilidad y gobernanza.</div>
-        </div>
-        <div class="model-step" onclick="toggleDetails('det-5')">
-          <div class="step-header"><h4>5. Gestión del Voluntariado Y Capital Social</h4><span class="arrow">▼</span></div>
-          <div id="det-5" class="model-details">Implementa microcompromisos ágiles, reciprocidad, formación continua y reconocimiento público para asegurar alta retención y motivación comunitaria.</div>
-        </div>
-        <div class="model-step" onclick="toggleDetails('det-6')">
-          <div class="step-header"><h4>6. Valor Público en las 22 Comunas</h4><span class="arrow">▼</span></div>
-          <div id="det-6" class="model-details">Garantiza la continuidad de las intervenciones, visibilidad territorial y resolución empírica de problemáticas locales.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="ia" class="container">
-      <div class="section-header">
-        <h2 class="section-title">Inteligencia Artificial como Habilitador</h2>
-        <p class="section-subtitle">Enfoque no impositivo: valoración sistemática de pertinencia, usabilidad y gobernanza ética.</p>
-      </div>
-      
-      <div class="grid grid-3">
-        <div class="card"><h4>Analítica & Priorización</h4><p>Mapeo de urgencia social y priorización multicriterio basada en datos del territorio.</p><span class="pill pill-pending">Evaluación por pertinencia</span></div>
-        <div class="card"><h4>Procesamiento de Lenguaje</h4><p>Síntesis asistida de actas vecinales, encuestas comunitarias y peticiones de líderes JAC.</p><span class="pill pill-pending">Evaluación por pertinencia</span></div>
-        <div class="card"><h4>Automatización Asistida</h4><p>Generación ágil de reportes ejecutivos para directivos y líderes comunales con baja fricción.</p><span class="pill pill-pending">Evaluación por pertinencia</span></div>
-      </div>
-    </section>
-
-    <section id="indicadores" class="container">
-      <div class="section-header">
-        <h2 class="section-title">Sistema de Medición de Desempeño (KPI)</h2>
-        <p class="section-subtitle">Métricas estandarizadas para evaluar objetivamente la optimización de la gestión.</p>
-      </div>
-
-      <div class="table-responsive">
-        <table class="kpi-table">
-          <thead>
-            <tr>
-              <th>Código</th>
-              <th>Nombre del Indicador</th>
-              <th>Frecuencia</th>
-              <th>Responsable</th>
-              <th>Línea Base</th>
-              <th>Meta</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>KPI-01</strong></td><td>Índice de Continuidad de Iniciativas (ICIC)</td><td>Semestral</td><td>Agile PMO Lead</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-02</strong></td><td>Tasa de Cumplimiento de Cronograma (TCCA)</td><td>Bi-Mensual</td><td>Facilitador Ágil</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-03</strong></td><td>Tasa de Retención de Voluntarios (TRV)</td><td>Semestral</td><td>Coord. Voluntariado</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-04</strong></td><td>Índice de Satisfacción del Voluntario (ISV)</td><td>Semestral</td><td>Coord. Voluntariado</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-05</strong></td><td>Satisfacción Comunitaria y Beneficiarios (ISCB)</td><td>Por iniciativa</td><td>Coord. Territorial</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-06</strong></td><td>Cobertura Territorial en 22 Comunas (CTEC)</td><td>Trimestral</td><td>Enlace Territorial</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-07</strong></td><td>Eficiencia en Gestión de Recursos (EGRA)</td><td>Por iniciativa</td><td>Gestor Recursos PMO</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-            <tr><td><strong>KPI-10</strong></td><td>Índice de Valor Público Territorial (IVPT)</td><td>Anual / Fin ciclo</td><td>Director PMO</td><td><span class="pill pill-pending">Por levantar</span></td><td><span class="pill pill-pending">Por definir</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="documento" class="container text-center">
-      <div class="section-header">
-        <h2 class="section-title">Consulta del Documento Académico</h2>
-        <p class="section-subtitle">Acceso formal al texto completo de la tesis para revisión docente y evaluación de jurados.</p>
-      </div>
-
-      <div class="card card-doc">
-        <h3>Tesis de Maestría en Gerencia de Proyectos</h3>
-        <p style="margin-bottom: 1.5rem;">Documento completo estructurado bajo Normas APA 7.ª edición y lineamientos del Politécnico Grancolombiano.</p>
-        <a href="https://docs.google.com/document/d/1urCO5aM2feUlexwXrRF8aIKCdz_Llsyv_-SvQ4MSu_k/edit?usp=drive_web" target="_blank" class="btn btn-primary">
-          Consultar Tesis Completa (Google Docs)
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#modelo" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-teal to-teal-500 hover:from-teal-400 hover:to-brand-teal text-brand-navy font-bold text-sm tracking-wide shadow-lg shadow-brand-teal/20 transition flex items-center justify-center gap-2">
+          Explorar el Nuevo Modelo Territorial
+          <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#piloto" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-brand-dark/90 hover:bg-brand-slate/40 border border-brand-slate text-white font-medium text-sm transition flex items-center justify-center gap-2">
+          Ver Propuesta Piloto Cali (12 Semanas)
+          <i data-lucide="calendar" class="w-4 h-4 text-brand-mint"></i>
         </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <p><strong>Norma Rocío Machado Fernández</strong> — Maestría en Gerencia de Proyectos</p>
-    <p>Politécnico Grancolombiano • Seminario • 2026</p>
-    <p class="footer-note">Proyecto Académico — Trabajo de Grado de Maestría</p>
+  <!-- SEC-02: EL PROBLEMA (COMPARACIÓN ACTIVA) -->
+  <section id="problema" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Diagnóstico Estructural</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Contraste de Operación Territorial</h2>
+      <p class="text-slate-400 text-sm mt-3">Intercambia la vista para comparar la saturación del modelo tradicional empírico frente al marco ágil y gobernado con datos.</p>
+
+      <!-- Toggle Switch -->
+      <div class="mt-8 inline-flex p-1 bg-brand-dark border border-brand-slate/50 rounded-xl">
+        <button id="toggle-both" onclick="setComparisonMode('both')" class="px-4 py-2 text-xs font-semibold rounded-lg bg-brand-slate text-white transition">Ver Ambos</button>
+        <button id="toggle-current" onclick="setComparisonMode('current')" class="px-4 py-2 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">Solo Situación Actual</button>
+        <button id="toggle-proposed" onclick="setComparisonMode('proposed')" class="px-4 py-2 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">Solo Modelo Propuesto</button>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 items-stretch">
+      <!-- Columna Situación Actual -->
+      <div id="card-current" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/50 border border-red-500/30 transition duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-red-500/20">
+          <div class="flex items-center gap-2 text-red-400">
+            <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+            <h3 class="font-bold text-base text-white">SITUACIÓN ACTUAL (EMPÍRICA)</h3>
+          </div>
+          <span class="text-[11px] px-2 py-0.5 rounded bg-red-500/10 text-red-400 font-mono">AS-IS</span>
+        </div>
+
+        <div class="mt-6 space-y-6 text-sm">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-red-400 uppercase tracking-wide">El Desgaste del Activismo Reactivo</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-red-950/60 border border-red-800 text-red-300 rounded">EVIDENCIA/HALLAZGO [1, 9]</span>
+            </div>
+            <p class="text-slate-300 mt-2 leading-relaxed">
+              Las iniciativas comunitarias operan de forma empírica y fragmentada. Se inician campañas con alto entusiasmo pero la inconstancia y falta de seguimiento provocan que se apaguen rápidamente [9, 37].
+            </p>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-red-400 uppercase tracking-wide">La Ceguera de Datos Territoriales</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-amber-950/60 border border-amber-800 text-amber-300 rounded">HALLAZGO [9, 13]</span>
+            </div>
+            <p class="text-slate-300 mt-2 leading-relaxed">
+              Las directivas demandan reportes e indicadores de impacto, pero la información en territorio está dispersa o es inexistente. Se desconoce la cobertura real y no hay línea base unificada [9, 10, 11].
+            </p>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-red-400 uppercase tracking-wide">Desgaste y Deserción del Voluntariado</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-red-950/60 border border-red-800 text-red-300 rounded">EVIDENCIA [38]</span>
+            </div>
+            <p class="text-slate-300 mt-2 leading-relaxed">
+              Comités 100% voluntarios abrumados por tareas administrativas y reportes manuales exigidos por directivas, restando tiempo a la inmersión comunitaria y causando fatiga operativa [9, 36, 37, 38].
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Modelo Propuesto -->
+      <div id="card-proposed" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/50 border border-brand-teal/40 transition duration-300">
+        <div class="flex items-center justify-between pb-4 border-b border-brand-teal/20">
+          <div class="flex items-center gap-2 text-brand-mint">
+            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+            <h3 class="font-bold text-base text-white">MODELO DE GESTIÓN PROPUESTO</h3>
+          </div>
+          <span class="text-[11px] px-2 py-0.5 rounded bg-brand-teal/20 text-brand-mint font-mono">TO-BE</span>
+        </div>
+
+        <div class="mt-6 space-y-6 text-sm">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-brand-mint uppercase tracking-wide">Alineación por Portafolio Estratégico</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-teal-950/60 border border-teal-800 text-brand-teal rounded">PROPUESTA</span>
+            </div>
+            <p class="text-slate-300 mt-2 leading-relaxed">
+              Estructuración por líneas estratégicas, programas y sprints de 2 a 4 semanas. Se canaliza el entusiasmo en ciclos acotados con victorias tempranas e indicadores claros.
+            </p>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-brand-mint uppercase tracking-wide">Datos Georreferenciados en Mapa Vivo</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-teal-950/60 border border-teal-800 text-brand-teal rounded">PROPUESTA / BENCHMARK</span>
+            </div>
+            <p class="text-slate-300 mt-2 leading-relaxed">
+              Visor territorial que geolocaliza cada microintervención ciudadana. Calidad garantizada en origen mediante control quincenal AMAD antes de procesar reportes directivos.
+            </p>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-brand-mint uppercase tracking-wide">Oficina de Valor y Microcompromisos</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-teal-950/60 border border-teal-800 text-brand-teal rounded">AGILIDAD SOCIAL</span>
+            </div>
+            <p class="text-slate-300 mt-2 leading-relaxed">
+              La PMO actúa como facilitador eliminando trabas burocráticas. La IA transcribe notas de voz en reportes automáticos y el trabajo se fragmenta en aportes breves de 2 horas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC-03: TERRITORIOS COMPARADOS (CALI VS MEDELLÍN) -->
+  <section id="territorios" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="max-w-3xl mb-10">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Realidad Territorial Contrastada</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Lo que Está Pasando en Nuestros Territorios</h2>
+      <p class="text-slate-400 text-sm mt-2">Cruce analítico riguroso entre la fase de diseño en Cali y el benchmark operativo de Medellín.</p>
+    </div>
+
+    <!-- Pestañas de Territorio -->
+    <div class="flex gap-2 p-1.5 bg-brand-dark rounded-xl w-fit border border-brand-slate/40 mb-6">
+      <button id="tab-cali" onclick="showTerritory('cali')" class="px-5 py-2 rounded-lg text-xs font-bold bg-brand-teal text-brand-navy transition flex items-center gap-2">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Santiago de Cali
+      </button>
+      <button id="tab-medellin" onclick="showTerritory('medellin')" class="px-5 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition flex items-center gap-2">
+        <i data-lucide="database" class="w-3.5 h-3.5"></i> Distrito de Medellín
+      </button>
+    </div>
+
+    <!-- Panel Cali -->
+    <div id="panel-cali" class="bg-brand-dark/40 border border-brand-slate/50 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-4 pb-4 border-b border-brand-slate/30">
+        <div>
+          <h3 class="text-lg font-bold text-white">Caso 1: Santiago de Cali</h3>
+          <p class="text-xs text-brand-teal">Estado actual: Fase de Diseño Metodológico y Diagnóstico Cualitativo</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/30">En Formulación</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div class="p-5 rounded-xl bg-brand-dark border border-brand-slate/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
+            <h4 class="font-bold text-white text-xs uppercase">Evidencia en Fuentes</h4>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-brand-silver">EVIDENCIA [1, 2, 9]</span>
+          <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+            La propuesta se encuentra en fase de diseño metodológico; el análisis de 12 entrevistas cualitativas proyectadas (5 expertos y 7 actores locales) está pendiente de ejecución.
+          </p>
+          <div class="mt-4 p-2.5 rounded bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-200">
+            <strong>Vacío Empírico:</strong> Información pendiente de validación (no existen transcripciones ni datos empíricos de campo previos).
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-brand-dark border border-brand-slate/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <h4 class="font-bold text-white text-xs uppercase">Discrepancia Geográfica</h4>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 border border-amber-800 text-amber-300">HALLAZGO [1, 9]</span>
+          <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+            Existe una divergencia analítica crítica: la introducción alude a cubrir las 22 comunas de Cali, pero el marco metodológico y la cobertura presupuestaria restringen la red operativa únicamente a 13 comunas.
+          </p>
+          <div class="mt-4 p-2.5 rounded bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-200">
+            <strong>Atención:</strong> Información pendiente de validación sobre detalle y viabilidad financiera para las 9 comunas restantes.
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-brand-dark border border-brand-slate/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <h4 class="font-bold text-white text-xs uppercase">Fortaleza Territorial</h4>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-300">EVIDENCIA [1, 10]</span>
+          <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+            El partido posee personería jurídica y enlaces consolidados con las Juntas de Acción Comunal (JAC). Se cuenta con un rol activo de inmersión técnica de ~20 años en la colectividad, asegurando acceso prioritario y legitimidad.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Medellín -->
+    <div id="panel-medellin" class="hidden bg-brand-dark/40 border border-brand-slate/50 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex items-center justify-between flex-wrap gap-4 pb-4 border-b border-brand-slate/30">
+        <div>
+          <h3 class="text-lg font-bold text-white">Caso 2: Distrito de Medellín</h3>
+          <p class="text-xs text-brand-mint">Benchmark validado: Caso de Éxito de Gobierno de Datos y Visor GIS</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">Madurez Comprobada</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div class="p-5 rounded-xl bg-brand-dark border border-brand-slate/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-brand-mint"></span>
+            <h4 class="font-bold text-white text-xs uppercase">Evidencia de Medellín</h4>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-brand-silver">EVIDENCIA [12]</span>
+          <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+            Sistema robusto de seguimiento territorial geoespacial (GIS) que integra cronogramas, contratos y presupuestos de proyectos distribuidos con precisión en 16 comunas y 5 corregimientos.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-brand-dark border border-brand-slate/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
+            <h4 class="font-bold text-white text-xs uppercase">Acupuntura Urbana</h4>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-brand-silver">EVIDENCIA [15, 21]</span>
+          <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+            El programa "Tacita de Plata" sistematizó más de 220,000 microintervenciones cotidianas (parques, baches, andenes). La cercanía ciudadana se construye visibilizando la atención rápida de la gestión menor.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-brand-dark border border-brand-slate/40">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+            <h4 class="font-bold text-white text-xs uppercase">El Programa AMAD</h4>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-brand-silver">EVIDENCIA [14, 18, 37]</span>
+          <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+            El Aseguramiento Metodológico y del Dato (AMAD) quincenal garantiza la calidad en origen. La tecnología viene después del dato: no se automatiza sin disciplina de captura en campo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC-04: LA OPORTUNIDAD DE LIDERAR CON INTELIGENCIA -->
+  <section class="py-16 px-4 bg-gradient-to-b from-brand-navy via-brand-dark/60 to-brand-navy border-b border-brand-slate/30">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center justify-center p-3 rounded-full bg-brand-teal/10 text-brand-mint mb-4 border border-brand-teal/20">
+        <i data-lucide="sparkles" class="w-6 h-6"></i>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">La Oportunidad de Liderar con Inteligencia</h2>
+      <div class="mt-6 p-6 sm:p-8 rounded-2xl bg-brand-dark/90 border border-brand-teal/30 shadow-2xl relative overflow-hidden">
+        <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-brand-teal/20 text-brand-mint font-semibold uppercase tracking-wider block w-fit mx-auto mb-4">
+          Interpretación Consultiva
+        </span>
+        <p class="text-slate-200 text-base sm:text-lg leading-relaxed text-justify sm:text-center">
+          No necesitamos más software complejos que saturen a los coordinadores. Necesitamos un sistema que traduzca el esfuerzo del voluntario en valor medible y visible, combinando el rigor del dato con un modelo de agilidad de baja fricción humana. La oportunidad radica en ser el <strong class="text-white">primer partido político de Colombia</strong> que gobierna su gestión social con un modelo de Inteligencia Territorial reproducible y sustentable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC-05: EL NUEVO MODELO DE GESTIÓN TERRITORIAL (LAZO CERRADO) -->
+  <section id="modelo" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Arquitectura del Proceso</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Sistema Territorial de Lazo Cerrado</h2>
+      <p class="text-slate-400 text-sm mt-2">10 estaciones concatenadas que transforman la necesidad del barrio en memoria de gestión y valor social.</p>
+    </div>
+
+    <!-- Navegación de Estaciones -->
+    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-8" id="stations-grid">
+      <!-- Generadas dinámicamente con JS -->
+    </div>
+
+    <!-- Panel de Detalle de Estación -->
+    <div id="station-detail" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/80 border border-brand-teal/40 transition-all duration-300">
+      <!-- Contenido inyectado por JS -->
+    </div>
+  </section>
+
+  <!-- SEC-06 & SEC-07: PMO ÁGIL + INTELIGENCIA ARTIFICIAL -->
+  <section id="ia-pmo" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      
+      <!-- SEC-06: EL ROL DE LA PMO ÁGIL (CARD FLIP) -->
+      <div>
+        <div class="mb-6">
+          <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Oficina de Gestión de Valor</span>
+          <h2 class="text-2xl font-bold text-white mt-1">La PMO que Trabaja en el Idioma de la Gente</h2>
+          <p class="text-xs text-slate-400 mt-1">Pasa el cursor o toca la tarjeta para contrastar la PMO tradicional con el enfoque adaptativo.</p>
+        </div>
+
+        <div class="group h-80 perspective-1000 cursor-pointer" onclick="this.classList.toggle('flipped')">
+          <div id="flip-card-inner" class="relative w-full h-full duration-700 transform-style-3d group-hover:rotate-y-180 group-[.flipped]:rotate-y-180">
+            <!-- Frente -->
+            <div class="absolute inset-0 bg-brand-dark border border-brand-slate/60 p-6 rounded-2xl backface-hidden flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-slate-300">CONCEPTO CENTRAL</span>
+                <h3 class="text-lg font-bold text-white mt-3">De PMO de Control a Oficina de Valor</h3>
+                <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                  Rechazamos las oficinas tradicionales que actúan como "policías de proyectos" con indicadores inertes [36]. La PMO Ágil del partido actúa como un habilitador social: facilita recursos y remueve obstáculos [36, 38].
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-xs text-brand-teal font-semibold pt-4 border-t border-brand-slate/30">
+                <span>Ver Enfoque Operativo</span>
+                <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+              </div>
+            </div>
+
+            <!-- Reverso -->
+            <div class="absolute inset-0 bg-brand-dark/95 border border-brand-teal p-6 rounded-2xl backface-hidden rotate-y-180 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-brand-mint uppercase">"Agilidad Tropicalizada"</span>
+                    <span class="text-[10px] font-mono text-slate-400">[EVIDENCIA 38]</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300 mt-1">
+                    Las bases barriales y adultos mayores rechazan jergas en inglés (sprints, standups). Hablamos en español simple de "ciclos de trabajo", "tableros de tareas" y "reuniones breves de avance" [36, 38].
+                  </p>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-brand-teal uppercase">Gestión por Microcompromisos</span>
+                    <span class="text-[10px] font-mono text-slate-400">[PROPUESTA 38]</span>
+                  </div>
+                  <p class="text-[11px] text-slate-300 mt-1">
+                    Un voluntario no puede donar 10 horas indefinidas. Dividimos tareas en bloques pequeños (ej. "facilitar 2 horas este sábado"), reduciendo el desgaste [36, 38].
+                  </p>
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-400 text-right">Toca para volver</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEC-07: SIMULADOR DE WHATSAPP + IA INVISIBLE -->
+      <div>
+        <div class="mb-6">
+          <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Automatización sin Fricción</span>
+          <h2 class="text-2xl font-bold text-white mt-1">La IA como Asistente Invisible</h2>
+          <p class="text-xs text-slate-400 mt-1">El coordinador no llena formularios complejos: solo envía un audio de WhatsApp.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 bg-brand-dark/60 p-5 rounded-2xl border border-brand-slate/40">
+          <!-- Chat WhatsApp -->
+          <div class="bg-[#0b141a] rounded-xl p-4 border border-[#202c33] flex flex-col justify-between h-72">
+            <div class="flex items-center gap-2 pb-3 border-b border-[#202c33]">
+              <span class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold">C13</span>
+              <div>
+                <p class="text-xs font-semibold text-white">Coordinador Comuna 13</p>
+                <p class="text-[10px] text-emerald-400">En línea</p>
+              </div>
+            </div>
+
+            <div class="my-auto space-y-2">
+              <div class="bg-[#005c4b] text-white p-3 rounded-xl rounded-tr-none text-xs shadow">
+                <div class="flex items-center gap-2 mb-1 text-emerald-200">
+                  <i data-lucide="mic" class="w-3.5 h-3.5"></i>
+                  <span class="text-[10px] font-bold uppercase">Nota de Voz (0:34)</span>
+                </div>
+                <p class="text-[11px] leading-relaxed">
+                  "Buenas tardes, hoy ejecutamos el taller con 15 abuelitos en el salón comunal de la Comuna 13."
+                </p>
+                <span class="text-[9px] text-emerald-200 float-right mt-1">4:15 p.m. ✓✓</span>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-[#202c33] text-[10px] text-slate-400 flex items-center justify-between">
+              <span>Captura en lenguaje natural</span>
+              <span class="text-brand-mint font-mono">Baja Fricción</span>
+            </div>
+          </div>
+
+          <!-- Procesador de IA en Trasfondo -->
+          <div class="bg-brand-dark rounded-xl p-4 border border-brand-teal/40 flex flex-col justify-between h-72">
+            <div class="flex items-center gap-2 pb-2 border-b border-brand-slate/40">
+              <i data-lucide="bot" class="w-4 h-4 text-brand-mint"></i>
+              <span class="text-xs font-bold text-white">Motor PLN / IA en Background</span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="p-2 rounded bg-brand-navy/60 border border-brand-slate/30">
+                <span class="text-[10px] text-slate-400 block">Comuna Asignada:</span>
+                <span class="font-bold text-brand-mint text-xs">Comuna 13 (Cali)</span>
+              </div>
+              <div class="p-2 rounded bg-brand-navy/60 border border-brand-slate/30">
+                <span class="text-[10px] text-slate-400 block">Línea de Portafolio:</span>
+                <span class="font-bold text-brand-teal text-xs">Adulto Mayor (Edad Dorada)</span>
+              </div>
+              <div class="p-2 rounded bg-brand-navy/60 border border-brand-slate/30">
+                <span class="text-[10px] text-slate-400 block">Georreferencia & Métrica:</span>
+                <span class="font-bold text-white text-[11px]">Salón Comunal • 15 Asistentes</span>
+              </div>
+            </div>
+
+            <div class="text-[10px] text-emerald-400 flex items-center gap-1.5 pt-2 border-t border-brand-slate/40">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Tablero y KPI actualizados sin formularios</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 rounded-xl bg-brand-dark/40 border border-brand-slate/40 text-[11px] text-slate-300 flex items-start gap-2">
+          <i data-lucide="alert-circle" class="w-4 h-4 text-brand-teal shrink-0 mt-0.5"></i>
+          <span><strong>Mapeo Predictivo:</strong> Mediante PLN, la IA procesa actas y peticiones vecinales para mapear tensiones barriales y alertar a la Senadora sobre conflictos emergentes antes de que escalen.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEC-08: EL PORTAFOLIO DE INICIATIVAS (ANÁLISIS CRÍTICO) -->
+  <section id="portafolio" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="max-w-3xl mb-12">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Arquitectura Programática</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Portafolio de Iniciativas Territoriales</h2>
+      <p class="text-slate-400 text-sm mt-2">Transparencia metodológica: contraste entre respaldo documental de fuentes y estructuración propuesta.</p>
+    </div>
+
+    <!-- Acordeones -->
+    <div class="space-y-3" id="portfolio-accordion">
+      <!-- Item 1 -->
+      <div class="border border-brand-slate/50 rounded-xl overflow-hidden bg-brand-dark/50">
+        <button onclick="toggleAccordion('acc-1')" class="w-full px-6 py-4 text-left font-semibold text-white flex items-center justify-between hover:bg-brand-slate/20 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xs font-bold">1</span>
+            <span class="text-sm sm:text-base">Adulto Mayor (Línea 1)</span>
+          </div>
+          <i id="icon-acc-1" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-1" class="hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-brand-slate/30">
+          <p class="text-slate-300"><strong>Respaldo:</strong> Justificado conceptualmente en Cali [8]; aplicación de campo en fase de diseño. Expertos respaldan la creación de redes de acompañamiento para combatir aislamiento [36]. <em class="text-amber-300">(Información pendiente de validación empírica)</em>.</p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-2 bg-brand-navy/60 p-3 rounded-lg border border-brand-slate/40 text-xs">
+            <div><span class="text-slate-400 block font-mono">PORTAFOLIO:</span> Inclusión Social</div>
+            <div><span class="text-slate-400 block font-mono">PROGRAMA:</span> Distrital de la Edad Dorada</div>
+            <div><span class="text-slate-400 block font-mono">PROYECTO:</span> Talleres de alfabetización y socialización en sprints [11]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="border border-brand-slate/50 rounded-xl overflow-hidden bg-brand-dark/50">
+        <button onclick="toggleAccordion('acc-2')" class="w-full px-6 py-4 text-left font-semibold text-white flex items-center justify-between hover:bg-brand-slate/20 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xs font-bold">2</span>
+            <span class="text-sm sm:text-base">Recuperación Ambiental (Línea 2)</span>
+          </div>
+          <i id="icon-acc-2" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-2" class="hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-brand-slate/30">
+          <p class="text-slate-300"><strong>Respaldo:</strong> Línea prioritaria en documento de Cali [8], sin base empírica de resultados históricos previos en las fuentes. <em class="text-amber-300">(Información pendiente de validación)</em>.</p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-2 bg-brand-navy/60 p-3 rounded-lg border border-brand-slate/40 text-xs">
+            <div><span class="text-slate-400 block font-mono">PORTAFOLIO:</span> Sostenibilidad y Hábitat</div>
+            <div><span class="text-slate-400 block font-mono">PROGRAMA:</span> Conectividad Ecológica Urbana</div>
+            <div><span class="text-slate-400 block font-mono">PROYECTO:</span> Sprints de 2 semanas para microparques barriales georreferenciados [11]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="border border-brand-slate/50 rounded-xl overflow-hidden bg-brand-dark/50">
+        <button onclick="toggleAccordion('acc-3')" class="w-full px-6 py-4 text-left font-semibold text-white flex items-center justify-between hover:bg-brand-slate/20 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xs font-bold">3</span>
+            <span class="text-sm sm:text-base">Prevención de Violencias y Seguridad (Línea 3)</span>
+          </div>
+          <i id="icon-acc-3" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-3" class="hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-brand-slate/30">
+          <p class="text-slate-300"><strong>Respaldo:</strong> Prioridad en Cali [8]. Expertos confirman que la prevención exige aislar causas raíz y prever conflictividades mediante datos en territorio [10, 37].</p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-2 bg-brand-navy/60 p-3 rounded-lg border border-brand-slate/40 text-xs">
+            <div><span class="text-slate-400 block font-mono">PORTAFOLIO:</span> Convivencia y Seguridad Humana</div>
+            <div><span class="text-slate-400 block font-mono">PROGRAMA:</span> Entornos Protectores y Convivencia</div>
+            <div><span class="text-slate-400 block font-mono">PROYECTO:</span> Células barriales con tableros Kanban contra conflictividad [11]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="border border-brand-slate/50 rounded-xl overflow-hidden bg-brand-dark/50">
+        <button onclick="toggleAccordion('acc-4')" class="w-full px-6 py-4 text-left font-semibold text-white flex items-center justify-between hover:bg-brand-slate/20 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xs font-bold">4</span>
+            <span class="text-sm sm:text-base">Unidades Productivas: Madres Cabeza de Familia (Línea 4)</span>
+          </div>
+          <i id="icon-acc-4" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-4" class="hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-brand-slate/30">
+          <p class="text-slate-300"><strong>Respaldo:</strong> Delimitado en Cali [8]. Sin datos cuantitativos de ingresos o unidades vigentes en fuentes. <em class="text-amber-300">(Información pendiente de validación)</em>.</p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-2 bg-brand-navy/60 p-3 rounded-lg border border-brand-slate/40 text-xs">
+            <div><span class="text-slate-400 block font-mono">PORTAFOLIO:</span> Emprendimiento y Autonomía Económica</div>
+            <div><span class="text-slate-400 block font-mono">PROGRAMA:</span> Oficios y Emprendimiento Femenino</div>
+            <div><span class="text-slate-400 block font-mono">PROYECTO:</span> Capacitación en oficios rápidos y ferias barriales mensuales [11, 38]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="border border-brand-slate/50 rounded-xl overflow-hidden bg-brand-dark/50">
+        <button onclick="toggleAccordion('acc-5')" class="w-full px-6 py-4 text-left font-semibold text-white flex items-center justify-between hover:bg-brand-slate/20 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xs font-bold">5</span>
+            <span class="text-sm sm:text-base">Juventudes (Línea 5)</span>
+          </div>
+          <i id="icon-acc-5" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-5" class="hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-brand-slate/30">
+          <p class="text-slate-300"><strong>Respaldo:</strong> Línea en Cali [8]. Expertos señalan que los jóvenes requieren agenciamiento dinámico y horizontal, rechazando rigidez partidista [38].</p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-2 bg-brand-navy/60 p-3 rounded-lg border border-brand-slate/40 text-xs">
+            <div><span class="text-slate-400 block font-mono">PORTAFOLIO:</span> Liderazgo Generacional</div>
+            <div><span class="text-slate-400 block font-mono">PROGRAMA:</span> Líderes Jóvenes del Mañana</div>
+            <div><span class="text-slate-400 block font-mono">PROYECTO:</span> Comités juveniles descentralizados por áreas de interés [11, 36]</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 Emergente -->
+      <div class="border border-brand-mint/40 rounded-xl overflow-hidden bg-brand-dark/60">
+        <button onclick="toggleAccordion('acc-6')" class="w-full px-6 py-4 text-left font-semibold text-white flex items-center justify-between hover:bg-brand-slate/20 transition">
+          <div class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-full bg-brand-mint/20 text-brand-mint flex items-center justify-center text-xs font-bold">★</span>
+            <span class="text-sm sm:text-base text-brand-mint">Acupuntura Social y Mantenimiento Diario (Emergente)</span>
+          </div>
+          <i id="icon-acc-6" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-6" class="hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-brand-mint/30">
+          <p class="text-slate-300"><strong>Respaldo:</strong> Ausente en formulación inicial Cali. Altamente respaldada en Medellín: +220,000 microintervenciones sistemáticas en "Tacita de Plata" [15].</p>
+          <div class="mt-3 grid sm:grid-cols-3 gap-2 bg-brand-navy/60 p-3 rounded-lg border border-brand-mint/30 text-xs">
+            <div><span class="text-slate-400 block font-mono">PORTAFOLIO:</span> Mantenimiento Territorial</div>
+            <div><span class="text-slate-400 block font-mono">PROGRAMA:</span> Microintervenciones Comunitarias Rápidas</div>
+            <div><span class="text-slate-400 block font-mono">PROYECTO:</span> Brigadas semanales de embellecimiento barrial geolocalizadas [11, 15]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC-09: SISTEMA INTEGRADO DE INDICADORES (MÉTRICAS DE ÉXITO) -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Cuadro de Mando Integral</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Métricas de Éxito y Gobierno de Valor</h2>
+      <p class="text-slate-400 text-sm mt-2">Equilibrio entre la calidad estricta del dato técnico y el bienestar del voluntariado de base.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Card 1 -->
+      <div class="p-5 rounded-2xl bg-brand-dark/70 border border-brand-slate/50 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-brand-teal mb-3">
+            <i data-lucide="database" class="w-4 h-4"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Gobernanza y Calidad</h3>
+          </div>
+          <ul class="space-y-3 text-xs text-slate-300">
+            <li><strong>Rigor de Registro [Medellín]:</strong> % de iniciativas con 100% de campos obligatorios diligenciados [33].</li>
+            <li><strong>Validación GPS [Medellín]:</strong> % de actividades validadas con coordenadas reales [11, 33].</li>
+            <li><strong>Eficiencia IA [Expertos]:</strong> Horas burocráticas reducidas semanalmente a líderes [11, 38].</li>
+          </ul>
+        </div>
+        <div class="mt-4 pt-3 border-t border-brand-slate/40 text-[10px] text-brand-mint font-mono">DIMENSIÓN TÉCNICA</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="p-5 rounded-2xl bg-brand-dark/70 border border-brand-slate/50 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-brand-mint mb-3">
+            <i data-lucide="users" class="w-4 h-4"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Participación y Base</h3>
+          </div>
+          <ul class="space-y-3 text-xs text-slate-300">
+            <li><strong>Retención [Cali/Expertos]:</strong> % de voluntarios que siguen activos ciclo tras ciclo [11].</li>
+            <li><strong>Microcompromisos [Expertos]:</strong> % de tareas acotadas terminadas satisfactoriamente [11, 38].</li>
+            <li><strong>Valor de Doble Vía [Expertos]:</strong> Evaluación de bienestar y combate a la soledad del voluntario [36, 38].</li>
+          </ul>
+        </div>
+        <div class="mt-4 pt-3 border-t border-brand-slate/40 text-[10px] text-brand-teal font-mono">DIMENSIÓN HUMANA</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="p-5 rounded-2xl bg-brand-dark/70 border border-brand-slate/50 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-indigo-400 mb-3">
+            <i data-lucide="activity" class="w-4 h-4"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Operación Táctica</h3>
+          </div>
+          <ul class="space-y-3 text-xs text-slate-300">
+            <li><strong>Conclusión Portafolio [Cali]:</strong> Proporción de proyectos cerrados vs. iniciados [11].</li>
+            <li><strong>Volumen Acupuntura [Medellín]:</strong> Microobras, jornadas y talleres mapeados por comuna [15, 34].</li>
+          </ul>
+        </div>
+        <div class="mt-4 pt-3 border-t border-brand-slate/40 text-[10px] text-indigo-300 font-mono">DIMENSIÓN OPERATIVA</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="p-5 rounded-2xl bg-brand-dark/70 border border-brand-slate/50 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 text-emerald-400 mb-3">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-white">Impacto y Retorno Social</h3>
+          </div>
+          <ul class="space-y-3 text-xs text-slate-300">
+            <li><strong>Percepción Social [Cali]:</strong> Nivel de satisfacción de la comunidad beneficiada directa [11].</li>
+            <li><strong>Índice de Retorno de Valor:</strong> Sostenibilidad comunitaria comprobada tras la intervención.</li>
+          </ul>
+        </div>
+        <div class="mt-4 pt-3 border-t border-brand-slate/40 text-[10px] text-emerald-300 font-mono">DIMENSIÓN ESTRATÉGICA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC-10: PROPUESTA DE PILOTO: "ACUPUNTURA SOCIAL EN ACCIÓN" (12 SEMANAS) -->
+  <section id="piloto" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Implementación Controlada</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Propuesta de Piloto en Cali (12 Semanas)</h2>
+      <p class="text-slate-400 text-sm mt-2">Plan enfocado: selección de 3 comunas críticas y 2 líneas estratégicas para validar la metodología con rigor.</p>
+    </div>
+
+    <!-- Timeline Horizontal Interactivo -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+      <button onclick="setPilotPhase(1)" id="phase-btn-1" class="p-4 rounded-xl text-left bg-brand-teal text-brand-navy font-bold transition">
+        <span class="text-xs font-mono uppercase block">Semanas 1-2</span>
+        <span class="text-sm">Fase 1: Saneamiento</span>
+      </button>
+      <button onclick="setPilotPhase(2)" id="phase-btn-2" class="p-4 rounded-xl text-left bg-brand-dark border border-brand-slate/50 text-slate-300 hover:text-white transition">
+        <span class="text-xs font-mono uppercase block text-slate-400">Semanas 3-4</span>
+        <span class="text-sm">Fase 2: Codiseño</span>
+      </button>
+      <button onclick="setPilotPhase(3)" id="phase-btn-3" class="p-4 rounded-xl text-left bg-brand-dark border border-brand-slate/50 text-slate-300 hover:text-white transition">
+        <span class="text-xs font-mono uppercase block text-slate-400">Semanas 5-10</span>
+        <span class="text-sm">Fase 3: Sprints & AMAD</span>
+      </button>
+      <button onclick="setPilotPhase(4)" id="phase-btn-4" class="p-4 rounded-xl text-left bg-brand-dark border border-brand-slate/50 text-slate-300 hover:text-white transition">
+        <span class="text-xs font-mono uppercase block text-slate-400">Semanas 11-12</span>
+        <span class="text-sm">Fase 4: Transferencia</span>
+      </button>
+    </div>
+
+    <!-- Detalle de Fase -->
+    <div id="pilot-content" class="p-6 sm:p-8 rounded-2xl bg-brand-dark/60 border border-brand-teal/40">
+      <!-- JS insertará el contenido -->
+    </div>
+  </section>
+
+  <!-- SEC-11: RUTA DE ESCALAMIENTO NACIONAL -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-brand-slate/30">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-brand-teal font-semibold text-xs tracking-wider uppercase">Visión de Futuro</span>
+      <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2">Ruta de Escalamiento y Madurez</h2>
+      <p class="text-slate-400 text-sm mt-2">Del aprendizaje barrial controlado a la consolidación de inteligencia en el Congreso.</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-4">
+      <div class="p-5 rounded-2xl bg-brand-dark/90 border border-brand-teal/50">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-brand-mint uppercase tracking-wider">Nivel 3: Escalamiento Nacional</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-teal/20 text-brand-teal">CONGRESO / PARTIDO</span>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          Despliegue a Bogotá, Santander, Antioquia y Atlántico. La PMO central actúa como nodo unificador, recopilando evidencias geoespaciales agregadas en tiempo real para apoyar la labor legislativa y estratégica de la Senadora.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-brand-dark/60 border border-brand-slate/60">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-slate-200 uppercase tracking-wider">Nivel 2: Replicabilidad Distrital</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-slate/40 text-slate-300">CALI COMPLETO & MEDELLÍN</span>
+        </div>
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          Expansión del modelo refinado a las 13 comunas con estructura activa en Cali y articulación formal con el Visor Estratégico de Medellín [9, 12].
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-brand-dark/40 border border-brand-slate/40">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Nivel 1: Validación Piloto</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300">CALI (3 COMUNAS)</span>
+        </div>
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+          Consolidación del piloto de 12 semanas. Ajuste de los asistentes de IA por voz y validación de los tableros Kanban comunales [1, 9, 36].
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEC-12: EL ARGUMENTO EJECUTIVO PARA LA SENADORA -->
+  <section id="cierre" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-brand-dark via-brand-dark/95 to-brand-navy border border-brand-teal/40 shadow-2xl relative">
+      <div class="flex items-center gap-3 pb-6 border-b border-brand-slate/40 mb-6">
+        <span class="p-2 rounded-xl bg-brand-teal/20 text-brand-teal">
+          <i data-lucide="mail-check" class="w-6 h-6"></i>
+        </span>
+        <div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">Argumento Estratégico para la Decisión</h2>
+          <p class="text-xs text-brand-mint">Insumo de Dirección Ejecutiva</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
+        <p class="font-bold text-white text-base">Estimada Senadora,</p>
+        <p>
+          Pasar de gestionar actividades aisladas a liderar mediante un Portafolio de Proyectos Orientado a Resultados no es un cambio de software o una exigencia técnica innecesaria; es la clave estratégica para la supervivencia y el crecimiento de nuestra organización comunitaria [1, 9, 36].
+        </p>
+        <p>
+          El modelo empírico y reactivo tradicional está asfixiando a nuestros coordinadores comunitarios bajo montañas de reportes manuales, provocando un desgaste invisible y la deserción de nuestro capital más sagrado: el voluntariado de base [9, 36, 38]. Al mismo tiempo, la falta de datos georreferenciados nos condena a la invisibilidad operativa, impidiéndonos demostrar con rigor científico ante la ciudadanía el inmenso impacto y valor social de nuestra gestión diaria en los barrios [15, 21].
+        </p>
+        <p>
+          Esta propuesta técnica de Inteligencia Territorial y PMO Ágil cambia las reglas de juego. Proponemos una Oficina de Gestión de Valor que protege al voluntario en terreno mediante esquemas de microcompromisos y utiliza la Inteligencia Artificial como un asistente invisible para eliminar la carga burocrática [36, 38]. En el trasfondo técnico, la tecnología nos permite gobernar los datos de forma quincenal (programa AMAD), para consolidar un Visor de Impacto Social geoespacial transparente [18, 26].
+        </p>
+        <p>
+          No proponemos una reforma masiva e improvisada; proponemos un Piloto de validación técnica de 12 semanas enfocado en tres comunas críticas de Cali y dos líneas del portafolio, garantizando que cada paso esté respaldado por la evidencia empírica de las bases [1, 9].
+        </p>
+        <p class="font-semibold text-white">
+          Es el momento de liderar con rigor, desburocratizar el territorio, visibilizar la gestión diaria y demostrar, con datos y evidencias indiscutibles en el mapa, el valor transformador del partido en Colombia. El futuro de la gobernanza territorial es con evidencia y agilidad.
+        </p>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-brand-slate/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-left">
+          <p class="text-xs font-bold text-white uppercase tracking-wider">Dirección Estratégica & Calidad</p>
+          <p class="text-[11px] text-slate-400">Modelo Integrado de Inteligencia Territorial</p>
+        </div>
+        <a href="#piloto" class="px-5 py-2.5 rounded-xl bg-brand-teal hover:bg-brand-mint text-brand-navy font-bold text-xs transition">
+          Aprobar Hoja de Ruta del Piloto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-4 text-center text-[11px] text-slate-500 border-t border-brand-slate/20">
+    <p>© 2026 Inteligencia Territorial & Gestión de Valor. Documento de Dirección Estratégica para toma de decisiones.</p>
   </footer>
 
+  <!-- SCRIPT DE INTERACTIVIDAD -->
   <script>
-    function toggleDetails(id) {
-      const details = document.getElementById(id);
-      const parent = details.closest('.model-step');
-      const isShowing = details.classList.contains('show');
-      
-      document.querySelectorAll('.model-details').forEach(d => d.classList.remove('show'));
-      document.querySelectorAll('.model-step').forEach(s => s.classList.remove('active'));
+    lucide.createIcons();
 
-      if (!isShowing) {
-        details.classList.add('show');
-        parent.classList.add('active');
+    // SEC-02: Toggle Comparison
+    function setComparisonMode(mode) {
+      const current = document.getElementById('card-current');
+      const proposed = document.getElementById('card-proposed');
+      const btnBoth = document.getElementById('toggle-both');
+      const btnCur = document.getElementById('toggle-current');
+      const btnProp = document.getElementById('toggle-proposed');
+
+      [btnBoth, btnCur, btnProp].forEach(b => {
+        b.className = 'px-4 py-2 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition';
+      });
+
+      if (mode === 'both') {
+        current.classList.remove('hidden', 'opacity-30');
+        proposed.classList.remove('hidden', 'opacity-30');
+        btnBoth.className = 'px-4 py-2 text-xs font-semibold rounded-lg bg-brand-slate text-white transition';
+      } else if (mode === 'current') {
+        current.classList.remove('hidden', 'opacity-30');
+        proposed.classList.add('opacity-30');
+        btnCur.className = 'px-4 py-2 text-xs font-semibold rounded-lg bg-red-900/60 text-white transition';
+      } else {
+        proposed.classList.remove('hidden', 'opacity-30');
+        current.classList.add('opacity-30');
+        btnProp.className = 'px-4 py-2 text-xs font-semibold rounded-lg bg-brand-teal text-brand-navy transition';
       }
     }
+
+    // SEC-03: Tabs Territorio
+    function showTerritory(territory) {
+      const pCali = document.getElementById('panel-cali');
+      const pMed = document.getElementById('panel-medellin');
+      const tCali = document.getElementById('tab-cali');
+      const tMed = document.getElementById('tab-medellin');
+
+      if (territory === 'cali') {
+        pCali.classList.remove('hidden');
+        pMed.classList.add('hidden');
+        tCali.className = 'px-5 py-2 rounded-lg text-xs font-bold bg-brand-teal text-brand-navy transition flex items-center gap-2';
+        tMed.className = 'px-5 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition flex items-center gap-2';
+      } else {
+        pCali.classList.add('hidden');
+        pMed.classList.remove('hidden');
+        tMed.className = 'px-5 py-2 rounded-lg text-xs font-bold bg-brand-mint text-brand-navy transition flex items-center gap-2';
+        tCali.className = 'px-5 py-2 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition flex items-center gap-2';
+      }
+    }
+
+    // SEC-05: Lazo Cerrado Data
+    const closedLoopStations = [
+      { num: "01", name: "Escucha Territorial", desc: "Captura permanente de dolores comunitarios mediante enlaces en las JAC [10].", solves: "La desarticulación de las prioridades del partido con las necesidades reales del ciudadano [37]." },
+      { num: "02", name: "Diagnóstico Metodológico", desc: "Estructuración de quejas e iniciativas en una base de datos territorial [1, 9].", solves: "Las decisiones intuitivas o basadas en contingencias mediáticas de corto plazo [37]." },
+      { num: "03", name: "Priorización Objetiva", desc: "Matriz de selección según vulnerabilidad demográfica, urgencia y disponibilidad de voluntarios [1, 9].", solves: "La dispersión de recursos y el desgaste al intentar abordar todo simultáneamente [1, 9, 37]." },
+      { num: "04", name: "Portafolio de Iniciativas", desc: "Clasificación de proyectos en programas y líneas estratégicas claras [8, 11].", solves: "La inconstancia de proyectos sociales que inician pero mueren sin consolidarse [1, 9]." },
+      { num: "05", name: "PMO Ágil (Oficina de Valor)", desc: "Planificación de victorias tempranas en ciclos de 2 a 4 semanas, eliminando burocracia [11, 36].", solves: "El rechazo cultural de las bases comunitarias a las exigencias corporativas y tecnicismos [38]." },
+      { num: "06", name: "Inteligencia Artificial", desc: "Asistente virtual de fondo que procesa audios y automatiza la carga administrativa [36, 38].", solves: "La sobrecarga administrativa manual que asfixia el tiempo en terreno de los líderes [9, 36]." },
+      { num: "07", name: "Ejecución Descentralizada", desc: "Despliegue de proyectos locales bajo un modelo flexible de microcompromisos [11, 38].", solves: "La imposibilidad de los voluntarios de donar jornadas completas de trabajo por motivos personales [38]." },
+      { num: "08", name: "Medición y AMAD", desc: "Comisiones quincenales para limpiar y validar los datos antes de reportar a directivas [18, 33].", solves: "El riesgo de alimentar sistemas con datos erróneos ('automatizar el desorden') [37]." },
+      { num: "09", name: "Valor Social Recíproco", desc: "Retorno de valor directo al voluntario: capacitación, reconocimiento y combate de la soledad [36, 38].", solves: "La deserción y rotación masiva del capital social de base [38]." },
+      { num: "10", name: "Aprendizaje y Escalamiento", desc: "Sistematización automática de lecciones aprendidas para clonar proyectos exitosos [36, 37].", solves: "El olvido y la pérdida de memoria histórica cuando los líderes se retiran [37]." }
+    ];
+
+    function renderStationsGrid() {
+      const container = document.getElementById('stations-grid');
+      container.innerHTML = closedLoopStations.map((s, idx) => `
+        <button onclick="selectStation(${idx})" id="st-btn-${idx}" class="p-3 rounded-xl border ${idx === 0 ? 'bg-brand-teal text-brand-navy border-brand-teal' : 'bg-brand-dark/70 text-slate-300 border-brand-slate/40'} hover:border-brand-teal text-left transition">
+          <span class="text-[10px] font-mono font-bold block opacity-70">${s.num}</span>
+          <span class="text-xs font-semibold line-clamp-1">${s.name}</span>
+        </button>
+      `).join('');
+      selectStation(0);
+    }
+
+    function selectStation(idx) {
+      closedLoopStations.forEach((_, i) => {
+        const btn = document.getElementById(`st-btn-${i}`);
+        if (btn) {
+          btn.className = (i === idx)
+            ? 'p-3 rounded-xl border bg-brand-teal text-brand-navy border-brand-teal text-left transition'
+            : 'p-3 rounded-xl border bg-brand-dark/70 text-slate-300 border-brand-slate/40 hover:border-brand-teal text-left transition';
+        }
+      });
+
+      const s = closedLoopStations[idx];
+      const panel = document.getElementById('station-detail');
+      panel.innerHTML = `
+        <div class="flex items-center gap-3 pb-3 border-b border-brand-slate/40">
+          <span class="w-8 h-8 rounded-lg bg-brand-teal/20 text-brand-mint border border-brand-teal/40 flex items-center justify-center font-bold text-sm font-mono">${s.num}</span>
+          <h3 class="text-lg font-bold text-white">${s.name}</h3>
+        </div>
+        <div class="mt-4 grid sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-brand-navy/60 border border-brand-slate/40">
+            <span class="text-brand-teal font-mono text-[10px] uppercase font-bold block mb-1">Mecanismo Técnico:</span>
+            <p class="text-slate-200 leading-relaxed">${s.desc}</p>
+          </div>
+          <div class="p-4 rounded-xl bg-red-950/20 border border-red-500/30">
+            <span class="text-red-400 font-mono text-[10px] uppercase font-bold block mb-1">Problema que Soluciona:</span>
+            <p class="text-slate-300 leading-relaxed">${s.solves}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // SEC-08: Acordeones
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById('icon-' + id);
+      const isHidden = content.classList.contains('hidden');
+
+      // Cierra todos
+      for (let i = 1; i <= 6; i++) {
+        const c = document.getElementById('acc-' + i);
+        const ic = document.getElementById('icon-acc-' + i);
+        if (c) c.classList.add('hidden');
+        if (ic) ic.classList.remove('rotate-180');
+      }
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    }
+
+    // SEC-10: Fases del Piloto
+    const pilotPhases = [
+      {
+        weeks: "Semanas 1-2",
+        title: "Delimitación Operativa y Saneamiento",
+        actions: "Conciliación de cobertura territorial. Se descarta arrancar en las 22 comunas de Cali; se seleccionan tres (3) comunas críticas con presencia activa del partido (ej. Comunas 13, 14 y 21) [1, 9]. Se delimita la intervención únicamente a dos líneas: Adulto Mayor y Madres Cabeza de Familia [8].",
+        milestone: "Mapa territorial delimitado y censo base de voluntarios por comuna."
+      },
+      {
+        weeks: "Semanas 3-4",
+        title: "Levantamiento y Codiseño de Baja Fricción",
+        actions: "Ejecución de la línea base de campo en las comunas piloto [1, 9]. Codiseñar con las JAC locales el esquema de microcompromisos y la estructura de reporte con un límite estricto de 10 campos elementales obligatorios de captura [11, 14].",
+        milestone: "Estándar metodológico simplificado y plan de microcompromisos aprobado por las bases."
+      },
+      {
+        weeks: "Semanas 5-10",
+        title: "Sprints de Impacto y Célula AMAD",
+        actions: "Desplegar 3 ciclos de trabajo (sprints) de 2 semanas enfocados en actividades comunitarias ágiles y de alto impacto visual (talleres rápidos de oficios e integración digital) [11, 38]. Sesiones quincenales del comité AMAD para validar registros GPS en mapa [18, 26]. Habilitación del bot de IA que procesa audios de reporte [36, 38].",
+        milestone: "Tres victorias tempranas visibles georreferenciadas y reporte del piloto alimentado de forma ágil."
+      },
+      {
+        weeks: "Semanas 11-12",
+        title: "Evaluación y Transferencia",
+        actions: "Medir y evaluar indicadores de retención, volumen de microintervenciones georreferenciadas y horas administrativas automatizadas por la IA [11, 38]. Sistematizar aprendizajes de las bases para estructurar el modelo de escalamiento nacional [36, 37].",
+        milestone: "Documento definitivo de validación técnica del piloto listo para la firma de la Senadora."
+      }
+    ];
+
+    function setPilotPhase(phaseNum) {
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`phase-btn-${i}`);
+        if (i === phaseNum) {
+          btn.className = 'p-4 rounded-xl text-left bg-brand-teal text-brand-navy font-bold transition';
+          btn.querySelector('span:first-child').className = 'text-xs font-mono uppercase block text-brand-navy/80';
+        } else {
+          btn.className = 'p-4 rounded-xl text-left bg-brand-dark border border-brand-slate/50 text-slate-300 hover:text-white transition';
+          btn.querySelector('span:first-child').className = 'text-xs font-mono uppercase block text-slate-400';
+        }
+      }
+
+      const p = pilotPhases[phaseNum - 1];
+      const container = document.getElementById('pilot-content');
+      container.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-brand-slate/40">
+          <div>
+            <span class="text-xs font-mono text-brand-teal uppercase font-bold">${p.weeks}</span>
+            <h3 class="text-lg font-bold text-white mt-0.5">Fase ${phaseNum}: ${p.title}</h3>
+          </div>
+          <span class="px-3 py-1 rounded bg-brand-teal/10 border border-brand-teal/30 text-brand-mint text-xs font-mono">Sprint Plan</span>
+        </div>
+        <div class="mt-4 space-y-4 text-xs sm:text-sm">
+          <div>
+            <h4 class="font-bold text-slate-200 uppercase tracking-wide text-xs">Acciones Clave:</h4>
+            <p class="text-slate-300 mt-1 leading-relaxed">${p.actions}</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-brand-navy/80 border border-brand-teal/30 flex items-center gap-3">
+            <i data-lucide="flag" class="w-4 h-4 text-brand-mint shrink-0"></i>
+            <div>
+              <span class="text-[11px] font-mono text-slate-400 uppercase block font-bold">Hito Entregable:</span>
+              <span class="text-xs font-semibold text-white">${p.milestone}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+
+    // Inicializaciones
+    renderStationsGrid();
+    setPilotPhase(1);
   </script>
 </body>
 </html>
